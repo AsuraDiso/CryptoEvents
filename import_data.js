@@ -20,9 +20,9 @@ async function demonstrateIsolationLevels(connection) {
       database: 'crypto_events'
     });
     
-    await concurrentConnection.query('UPDATE events SET name_of_incident = "Updated Event" WHERE sl_no = 1');
+    await concurrentConnection.query('UPDATE events SET name_of_incident = "Updated Event" WHERE id = 1');
     
-    const [updatedData] = await connection.query('SELECT * FROM events WHERE sl_no = 1');
+    const [updatedData] = await connection.query('SELECT * FROM events WHERE id = 1');
     console.log('Read after concurrent update:', updatedData[0]);
     
     await connection.commit();
@@ -33,7 +33,7 @@ async function demonstrateIsolationLevels(connection) {
     
     await connection.beginTransaction();
     
-    await connection.query('SELECT * FROM events WHERE sl_no IN (1, 2) FOR UPDATE');
+    await connection.query('SELECT * FROM events WHERE id IN (1, 2) FOR UPDATE');
     
     const concurrentConnection2 = await mysql.createConnection({
       host: 'localhost',
@@ -43,7 +43,7 @@ async function demonstrateIsolationLevels(connection) {
     });
     
     try {
-      await concurrentConnection2.query('UPDATE events SET name_of_incident = "Blocked Update" WHERE sl_no = 1');
+      await concurrentConnection2.query('UPDATE events SET name_of_incident = "Blocked Update" WHERE id = 1');
       console.log('Concurrent update succeeded (should not happen in SERIALIZABLE)');
     } catch (error) {
       console.log('Concurrent update blocked (expected in SERIALIZABLE):', error.message);
@@ -57,7 +57,7 @@ async function demonstrateIsolationLevels(connection) {
     
     await connection.beginTransaction();
     
-    const [firstRead] = await connection.query('SELECT * FROM events WHERE sl_no = 1');
+    const [firstRead] = await connection.query('SELECT * FROM events WHERE id = 1');
     console.log('First read:', firstRead[0]);
     
     const concurrentConnection3 = await mysql.createConnection({
@@ -67,9 +67,9 @@ async function demonstrateIsolationLevels(connection) {
       database: 'crypto_events'
     });
     
-    await concurrentConnection3.query('UPDATE events SET name_of_incident = "Changed in REPEATABLE READ" WHERE sl_no = 1');
+    await concurrentConnection3.query('UPDATE events SET name_of_incident = "Changed in REPEATABLE READ" WHERE id = 1');
     
-    const [secondRead] = await connection.query('SELECT * FROM events WHERE sl_no = 1');
+    const [secondRead] = await connection.query('SELECT * FROM events WHERE id = 1');
     console.log('Second read (should be same as first):', secondRead[0]);
     
     await connection.commit();
@@ -93,11 +93,9 @@ async function importEvents() {
 
     await connection.query(`
       CREATE TABLE IF NOT EXISTS events (
-        sl_no INT PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         name_of_incident VARCHAR(255) NOT NULL,
-        date VARCHAR(50),
-        month VARCHAR(50),
-        year VARCHAR(50),
+        date DATE NOT NULL,
         country VARCHAR(100),
         type_of_event VARCHAR(100),
         place_name VARCHAR(255),
@@ -120,46 +118,58 @@ async function importEvents() {
     await connection.beginTransaction();
 
     try {
+      let importedCount = 0;
+      let skippedCount = 0;
+
       for (const row of results) {
+        if (!row['Name of Incident'] || !row['Date'] || !row['Month'] || !row['Year']) {
+          skippedCount++;
+          continue;
+        }
+
+        let date;
+        if (row['Date'] === 'Unknown' || row['Month'] === 'Unknown' || row['Year'] === 'Unknown') {
+          if (row['Year'] !== 'Unknown') {
+            date = new Date(row['Year']);
+          } else {
+            skippedCount++;
+            continue;
+          }
+        } else {
+          const dateStr = `${row['Year']}-${row['Month']}-${row['Date']}`;
+          date = new Date(dateStr);
+        }
+
+        if (isNaN(date.getTime())) {
+          skippedCount++;
+          continue;
+        }
+
         const values = [
-          row.sl_no,
-          row.name_of_incident,
-          row.date,
-          row.month,
-          row.year,
-          row.country,
-          row.type_of_event,
-          row.place_name,
-          row.impact,
-          row.affected_population,
-          row.important_person_group,
-          row.outcome
-        ].map(val => val === undefined ? null : val);
+          row['Name of Incident'],
+          date,
+          row['Country'] || null,
+          row['Type of Event'] || null,
+          row['Place Name'] || null,
+          row['Impact'] || null,
+          row['Affected Population'] || null,
+          row['Important Person/Group Responsible'] || null,
+          row['Outcome'] || null
+        ];
 
         await connection.query(
           `INSERT INTO events (
-            sl_no, name_of_incident, date, month, year, country,
+            name_of_incident, date, country,
             type_of_event, place_name, impact, affected_population,
             important_person_group, outcome
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-          ON DUPLICATE KEY UPDATE
-            name_of_incident=VALUES(name_of_incident),
-            date=VALUES(date),
-            month=VALUES(month),
-            year=VALUES(year),
-            country=VALUES(country),
-            type_of_event=VALUES(type_of_event),
-            place_name=VALUES(place_name),
-            impact=VALUES(impact),
-            affected_population=VALUES(affected_population),
-            important_person_group=VALUES(important_person_group),
-            outcome=VALUES(outcome)`,
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
           values
         );
+        importedCount++;
       }
 
       await connection.commit();
-      console.log('Events data imported successfully!');
+      console.log(`Events data imported successfully! Imported: ${importedCount}, Skipped: ${skippedCount}`);
 
       await demonstrateIsolationLevels(connection);
 
@@ -183,35 +193,34 @@ async function importCurrencies() {
       host: 'localhost',
       user: 'root',
       password: '',
-      database: 'crypto_coins'
+      database: 'crypto_events'
     });
+
+    await connection.query(`
+      CREATE TABLE IF NOT EXISTS currencies (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        Name VARCHAR(100),
+        Symbol VARCHAR(20),
+        Date DATETIME,
+        Close DECIMAL(20,8),
+        High DECIMAL(20,8),
+        Low DECIMAL(20,8),
+        Open DECIMAL(20,8),
+        Volume DECIMAL(30,8),
+        Marketcap DECIMAL(30,8)
+      )
+    `);
 
     const currencyDir = path.join(__dirname, 'data', 'currency');
     const files = fs.readdirSync(currencyDir);
 
     for (const file of files) {
       if (file.endsWith('.csv')) {
-        const currencyName = path.basename(file, '.csv');
-        console.log(`Importing ${currencyName}...`);
+        console.log(`Importing ${file}...`);
 
         await connection.beginTransaction();
 
         try {
-          await connection.query(`
-            CREATE TABLE IF NOT EXISTS ${currencyName} (
-              SNo INT PRIMARY KEY,
-              Name VARCHAR(100),
-              Symbol VARCHAR(20),
-              Date DATETIME,
-              Close DECIMAL(20,8),
-              High DECIMAL(20,8),
-              Low DECIMAL(20,8),
-              Open DECIMAL(20,8),
-              Volume DECIMAL(30,8),
-              Marketcap DECIMAL(30,8)
-            )
-          `);
-
           const results = [];
           await new Promise((resolve, reject) => {
             fs.createReadStream(path.join(currencyDir, file))
@@ -223,7 +232,6 @@ async function importCurrencies() {
 
           for (const row of results) {
             const values = [
-              row.SNo,
               row.Name,
               row.Symbol,
               row.Date,
@@ -236,25 +244,15 @@ async function importCurrencies() {
             ].map(val => val === undefined ? null : val);
 
             await connection.query(
-              `INSERT INTO ${currencyName} (
-                SNo, Name, Symbol, Date, Close, High, Low, Open, Volume, Marketcap
-              ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-              ON DUPLICATE KEY UPDATE
-                Name=VALUES(Name),
-                Symbol=VALUES(Symbol),
-                Date=VALUES(Date),
-                Close=VALUES(Close),
-                High=VALUES(High),
-                Low=VALUES(Low),
-                Open=VALUES(Open),
-                Volume=VALUES(Volume),
-                Marketcap=VALUES(Marketcap)`,
+              `INSERT INTO currencies (
+                Name, Symbol, Date, Close, High, Low, Open, Volume, Marketcap
+              ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
               values
             );
           }
 
           await connection.commit();
-          console.log(`${currencyName} data imported successfully!`);
+          console.log(`${file} data imported successfully!`);
 
         } catch (error) {
           await connection.rollback();
@@ -271,11 +269,94 @@ async function importCurrencies() {
   }
 }
 
+async function createEventCurrenciesTable() {
+  let connection;
+  try {
+    connection = await mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'crypto_events'
+    });
+
+    await connection.query(`
+      CREATE TABLE IF NOT EXISTS event_currencies (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        event_id INT NOT NULL,
+        currency_id INT NOT NULL,
+        date DATE NOT NULL,
+        FOREIGN KEY (event_id) REFERENCES events(id),
+        FOREIGN KEY (currency_id) REFERENCES currencies(id)
+      )
+    `);
+
+    console.log('Event currencies table created successfully!');
+  } catch (error) {
+    console.error('Error creating event_currencies table:', error);
+  } finally {
+    if (connection) {
+      await connection.end();
+    }
+  }
+}
+
+async function createEventCurrencyRelationships() {
+  let connection;
+  try {
+    connection = await mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'crypto_events'
+    });
+
+    const [events] = await connection.query('SELECT id, date FROM events');
+    
+    const [currencies] = await connection.query('SELECT id, Date FROM currencies');
+    
+    let relationshipCount = 0;
+    
+    for (const event of events) {
+      const eventDate = new Date(event.date);
+      const eventDateStr = eventDate.toISOString().split('T')[0];
+      
+      for (const currency of currencies) {
+        const currencyDate = new Date(currency.Date);
+        const currencyDateStr = currencyDate.toISOString().split('T')[0];
+        
+        if (eventDateStr === currencyDateStr) {
+          try {
+            await connection.query(
+              'INSERT INTO event_currencies (event_id, currency_id, date) VALUES (?, ?, ?)',
+              [event.id, currency.id, eventDate]
+            );
+            relationshipCount++;
+          } catch (error) {
+            if (error.code !== 'ER_DUP_ENTRY') {
+              console.error('Error creating relationship:', error);
+            }
+          }
+        }
+      }
+    }
+
+    console.log(`Created ${relationshipCount} event-currency relationships successfully!`);
+  } catch (error) {
+    console.error('Error creating event-currency relationships:', error);
+  } finally {
+    if (connection) {
+      await connection.end();
+    }
+  }
+}
+
 async function main() {
   try {
     console.log('Starting data import...');
     await importEvents();
     await importCurrencies();
+    await createEventCurrenciesTable();
+    await createEventCurrencyRelationships();
     console.log('All data imported successfully!');
     process.exit(0);
   } catch (error) {

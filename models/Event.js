@@ -1,23 +1,19 @@
 const { DataTypes } = require('sequelize');
-const { eventsDb } = require('../config/database');
+const { cryptoDb } = require('../config/database');
 
-const Event = eventsDb.define('Event', {
-  sl_no: {
+const Event = cryptoDb.define('Event', {
+  id: {
     type: DataTypes.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
   },
   name_of_incident: {
     type: DataTypes.STRING,
     allowNull: false
   },
   date: {
-    type: DataTypes.STRING
-  },
-  month: {
-    type: DataTypes.STRING
-  },
-  year: {
-    type: DataTypes.STRING
+    type: DataTypes.DATE,
+    allowNull: false
   },
   country: {
     type: DataTypes.STRING
