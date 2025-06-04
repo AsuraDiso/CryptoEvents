@@ -1,45 +1,45 @@
-# Зависимости
+# Dependency directories
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Переменные окружения
+# Environment variables
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# Логи
+# Logs
 logs/
 *.log
 
-# Временные файлы
+# Temporary files
 tmp/
 temp/
 
-# Кэш
+# Cache directories
 .npm
 .cache/
 
-# Файлы операционной системы
+# OS files
 .DS_Store
 Thumbs.db
 
-# IDE/редакторы
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# Продакшн билды
+# Production build
 dist/
 build/
 
-# Coverage отчеты
+# Coverage reports
 coverage/
 .nyc_output/
 
-# Файлы для разработки
+# Development files
 .nodemonignore
