@@ -1,15 +1,15 @@
-// impact_mapper.js - Система маппинга для расчета импакт-скора событий
+// impact_mapper.js - Mapping system for calculating the impact-score of events
 
 /**
- * Маппинг стран на экономическую значимость (1-10)
- * Учитывает размер экономики, влияние на глобальные рынки и криптовалюты
+ * Mapping countries by economic importance (1-10)
+ * Takes into account size of economy, influence on global markets and cryptocurrencies
  */
 const COUNTRY_IMPACT_MAP = {
-  // Мегарынки (10) - США, Китай
+  // Megamarkets (10) - USA, China
   'USA': 10,
   'China': 10,
   
-  // Крупные развитые экономики (8-9)
+  // Major Developed Economies (8-9)
   'Germany': 9,
   'Japan': 9,
   'UK': 9,
@@ -19,25 +19,25 @@ const COUNTRY_IMPACT_MAP = {
   'South Korea': 8,
   'Australia': 7,
   
-  // Развивающиеся гиганты (7-8)
+  // Emerging Giants (7-8)
   'India': 8,
   'Brazil': 7,
   'Russia': 7,
   'Mexico': 6,
   
-  // Криптофрендли юрисдикции (6-7)
+  // Cryptofriendly Jurisdictions (6-7)
   'Singapore': 7,
   'Switzerland': 6,
   'Netherlands': 6,
   
-  // Нефтяные державы (5-6)
+  // Oil Powers (5-6)
   'Saudi Arabia': 6,
   'Iran': 5,
   'Iraq': 5,
   'Kuwait': 5,
   'Norway': 6,
   
-  // Средние экономики (4-5)
+  // Middle Economies (4-5)
   'Spain': 5,
   'Taiwan': 5,
   'Thailand': 4,
@@ -52,16 +52,16 @@ const COUNTRY_IMPACT_MAP = {
   'Kenya': 3,
   'Ghana': 3,
   
-  // Исторические державы (4-5)
+  // Historical Powers (4-5)
   'USSR': 8,
   'Soviet Union': 8,
   
-  // Малые развитые (3-4)
+  // Small developed (3-4)
   'New Zealand': 4,
   'Finland': 4,
   'Denmark': 4,
   
-  // Развивающиеся средние (2-3)
+  // Developing averages (2-3)
   'Morocco': 3,
   'Tunisia': 3,
   'Algeria': 3,
@@ -80,7 +80,7 @@ const COUNTRY_IMPACT_MAP = {
   'Sudan': 2,
   'South Sudan': 2,
   
-  // Малые государства (1-2)
+  // Small States (1-2)
   'Botswana': 2,
   'Lesotho': 1,
   'Swaziland (Eswatini)': 1,
@@ -107,7 +107,7 @@ const COUNTRY_IMPACT_MAP = {
   'Maldives': 1,
   'Bhutan': 1,
   
-  // Исторические регионы
+  // Historic Regions
   'Persia': 4,
   'Babylon': 2,
   'Central Asia': 3,
@@ -118,11 +118,11 @@ const COUNTRY_IMPACT_MAP = {
 };
 
 /**
- * Маппинг типов событий на импакт (1-10)
- * Учитывает потенциальное влияние на экономику и финансовые рынки
+ * Mapping event types to impact (1-10)
+ * Takes into account the potential impact on the economy and financial markets
  */
 const EVENT_TYPE_IMPACT_MAP = {
-  // Экономические кризисы и реформы (8-10)
+  // Economic Crises and Reforms (8-10)
   'Economic Crisis': 10,
   'Economic Reform': 8,
   'Economic Policy': 7,
@@ -142,7 +142,7 @@ const EVENT_TYPE_IMPACT_MAP = {
   'International Economic Integration': 8,
   'International Trade Membership': 7,
   
-  // Военные конфликты и политическая нестабильность (7-10)
+  // Military conflicts and political instability (7-10)
   'War': 9,
   'Civil War': 8,
   'Military Conflict': 8,
@@ -181,7 +181,7 @@ const EVENT_TYPE_IMPACT_MAP = {
   'Nuclear Accident': 10,
   'Military/Atomic Warfare': 10,
   
-  // Политические изменения (5-8)
+  // Political Change (5-8)
   'Political Change': 6,
   'Political Transition': 7,
   'Political Crisis': 8,
@@ -233,7 +233,7 @@ const EVENT_TYPE_IMPACT_MAP = {
   'Political/Secession': 7,
   'Sovereignty Transition': 7,
   
-  // Природные и техногенные катастрофы (6-9)
+  // Natural and man-made disasters (6-9)
   'Natural Disaster': 7,
   'Disaster': 7,
   'Famine': 6,
@@ -254,7 +254,7 @@ const EVENT_TYPE_IMPACT_MAP = {
   'Environmental/Economic Policy': 6,
   'Environmental/Social': 4,
   
-  // Дипломатия и международные отношения (4-7)
+  // Diplomacy and International Relations (4-7)
   'Diplomatic': 5,
   'Diplomatic Agreement': 6,
   'Diplomatic Event': 5,
@@ -289,7 +289,7 @@ const EVENT_TYPE_IMPACT_MAP = {
   'International Finance': 7,
   'Negotiation': 4,
   
-  // Социальные и культурные события (2-6)
+  // Social and cultural events (2-6)
   'Social': 4,
   'Social Movement': 5,
   'Social Reform': 5,
@@ -339,7 +339,7 @@ const EVENT_TYPE_IMPACT_MAP = {
   'Religious/Court': 3,
   'Religious Shrine': 2,
   
-  // Преступность и правосудие (4-7)
+  // Crime and Justice (4-7)
   'Criminal Incident': 4,
   'Assassination Attempt': 7,
   'Political Assassination': 8,
@@ -371,7 +371,7 @@ const EVENT_TYPE_IMPACT_MAP = {
   'Security Incident': 5,
   'Security Policy': 5,
   
-  // Технологии и наука (3-7)
+  // Technology and Science (3-7)
   'Technology': 5,
   'Technological Advancement': 6,
   'Innovation': 6,
@@ -398,7 +398,7 @@ const EVENT_TYPE_IMPACT_MAP = {
   'Military/Technology': 6,
   'Military/Science': 5,
   
-  // Образование и здравоохранение (2-5)
+  // Education and Health (2-5)
   'Education': 3,
   'Education Development': 4,
   'Education Policy': 4,
@@ -410,7 +410,7 @@ const EVENT_TYPE_IMPACT_MAP = {
   'Public Health': 5,
   'Population Control Policy': 4,
   
-  // Спорт и развлечения (1-3)
+  // Sports and Entertainment (1-3)
   'Sport': 2,
   'Sports': 2,
   'Sporting Event': 2,
@@ -419,7 +419,7 @@ const EVENT_TYPE_IMPACT_MAP = {
   'World\'s Fair': 3,
   'International Exhibition': 3,
   
-  // Историческое и культурное наследие (1-3)
+  // Historical and Cultural Heritage (1-3)
   'Historical': 2,
   'Historical Period': 3,
   'Historical Reconciliation': 4,
@@ -433,7 +433,7 @@ const EVENT_TYPE_IMPACT_MAP = {
   'Literature': 2,
   'Artistic Achievement': 2,
   
-  // Прочие низкоимпактные события (1-3)
+  // Other low-impact events (1-3)
   'Settlement': 2,
   'City Foundation': 3,
   'Urban Development': 3,
@@ -463,38 +463,38 @@ const EVENT_TYPE_IMPACT_MAP = {
 };
 
 /**
- * Маппинг исходов на модификаторы импакта (множители)
+ * Mapping outcomes to impact modifiers (multipliers)
  */
 const OUTCOME_IMPACT_MAP = {
-  'Positive': 0.8,     // Позитивные события обычно меньше влияют на волатильность
-  'Negative': 1.3,     // Негативные события сильнее влияют на рынки
-  'Mixed': 1.0,        // Смешанные результаты - нейтральный множитель
-  'Ongoing': 1.1       // Продолжающиеся события создают неопределенность
+  'Positive': 0.8,     // Positive events tend to have less impact on volatility
+  'Negative': 1.3,     // Negative events have a stronger impact on the markets
+  'Mixed': 1.0,        // Mixed results - neutral multiplier
+  'Ongoing': 1.1       // Ongoing events create uncertainty
 };
 
 /**
- * Коэффициенты для расчета итогового импакт-скора
+ * Coefficients for calculating the total impact-score
  */
 const IMPACT_COEFFICIENTS = {
-  country: 0.4,        // 40% - страна (где произошло)
-  eventType: 0.5,      // 50% - тип события (что произошло)
-  outcome: 0.1         // 10% - исход (как закончилось)
+  country: 0.4,        // 40% - country (where it happened)
+  eventType: 0.5,      // 50% - type of event (what happened)
+  outcome: 0.1         // 10% - outcome (how it ended)
 };
 
 /**
- * Рассчитывает импакт-скор события
- * @param {string} country - Страна события
- * @param {string} eventType - Тип события
- * @param {string} outcome - Исход события
- * @returns {number} Импакт-скор от 0 до 10
+ * Calculates the impact-score of an event
+ * @param {string} country - Country of the event
+ * @param {string} eventType - Event type
+ * @param {string} outcome - Event outcome
+ * @returns {number} Impact-score 0 to 10
  */
 function calculateEventImpactScore(country, eventType, outcome) {
-  // Получаем базовые значения или используем дефолтные
-  const countryScore = COUNTRY_IMPACT_MAP[country] || 2; // Дефолт для неизвестных стран
-  const eventTypeScore = EVENT_TYPE_IMPACT_MAP[eventType] || 3; // Дефолт для неизвестных типов
+  // Get base values or use default values
+  const countryScore = COUNTRY_IMPACT_MAP[country] || 2; // Default for unknown countries
+  const eventTypeScore = EVENT_TYPE_IMPACT_MAP[eventType] || 3; // Default for unknown types
   const outcomeMultiplier = OUTCOME_IMPACT_MAP[outcome] || 1.0; // Дефолт для неизвестных исходов
   
-  // Рассчитываем взвешенный балл
+  // Calculate the weighted score
   const weightedScore = (
     countryScore * IMPACT_COEFFICIENTS.country +
     eventTypeScore * IMPACT_COEFFICIENTS.eventType
@@ -505,7 +505,7 @@ function calculateEventImpactScore(country, eventType, outcome) {
 }
 
 /**
- * Получает все уникальные значения для отладки
+ * Gets all unique values for debugging
  */
 function getUniqueMappingValues() {
   return {
@@ -516,7 +516,7 @@ function getUniqueMappingValues() {
 }
 
 /**
- * Проверяет покрытие маппинга для данных из CSV
+ * Checks mapping coverage for CSV data
  */
 function checkMappingCoverage(uniqueValues) {
   const coverage = {
@@ -537,7 +537,7 @@ function checkMappingCoverage(uniqueValues) {
     }
   };
   
-  // Проверяем страны
+  // Check countries
   if (uniqueValues.countries) {
     uniqueValues.countries.forEach(country => {
       if (COUNTRY_IMPACT_MAP[country]) {
@@ -548,7 +548,7 @@ function checkMappingCoverage(uniqueValues) {
     });
   }
   
-  // Проверяем типы событий
+  // Check event types
   if (uniqueValues.eventTypes) {
     uniqueValues.eventTypes.forEach(type => {
       if (EVENT_TYPE_IMPACT_MAP[type]) {
@@ -559,7 +559,7 @@ function checkMappingCoverage(uniqueValues) {
     });
   }
   
-  // Проверяем исходы
+  // Check the outcomes
   if (uniqueValues.outcomes) {
     uniqueValues.outcomes.forEach(outcome => {
       if (OUTCOME_IMPACT_MAP[outcome]) {

@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "import": "node updated_import_data.js",
-    "test": "node test-client.js"
+    "import": "node updated_import_data.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

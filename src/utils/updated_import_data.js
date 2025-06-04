@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const csv = require('csv-parser');
 const mysql = require('mysql2/promise');
-const { calculateEventImpactScore } = require('./impact_mapper');
+const { calculateEventImpactScore } = require('./src/utils/impact_mapper');
 
 async function demonstrateIsolationLevels(connection) {
   try {
@@ -92,7 +92,7 @@ async function importEvents() {
       database: 'crypto_events'
     });
 
-    // Создаем таблицу событий
+    // Create event table if it doesn't exist
     await connection.query(`
       CREATE TABLE IF NOT EXISTS events (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -127,14 +127,14 @@ async function importEvents() {
       let skippedCount = 0;
 
       for (const row of results) {
-        // Проверяем обязательные поля
+        // Check mandatory fields
         if (!row['Name of Incident'] || !row['Date'] || !row['Month'] || !row['Year']) {
           skippedCount++;
           continue;
         }
 
         let date;
-        // Обрабатываем даты
+        // Handle data
         if (row['Date'] === 'Unknown' || row['Month'] === 'Unknown' || row['Year'] === 'Unknown') {
           if (row['Year'] !== 'Unknown') {
             date = new Date(row['Year']);
@@ -174,7 +174,7 @@ async function importEvents() {
         );
         importedCount++;
         
-        // Показываем прогресс каждые 100 записей
+        // Show progress every 100 records
         if (importedCount % 100 === 0) {
           console.log(`Imported ${importedCount} events...`);
         }
@@ -183,7 +183,7 @@ async function importEvents() {
       await connection.commit();
       console.log(`Events data imported successfully! Imported: ${importedCount}, Skipped: ${skippedCount}`);
 
-      // Демонстрируем уровни изоляции после успешного импорта
+      // Show isolation levels
       await demonstrateIsolationLevels(connection);
 
     } catch (error) {
@@ -209,7 +209,7 @@ async function importCurrencies() {
       database: 'crypto_events'
     });
 
-    // Создаем таблицу криптовалют
+    // Create currencies table if it doesn't exist
     await connection.query(`
       CREATE TABLE IF NOT EXISTS currencies (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -227,7 +227,7 @@ async function importCurrencies() {
 
     const currencyDir = path.join(__dirname, 'data', 'currency');
     
-    // Проверяем существование папки
+    // Check if currency directory exists
     if (!fs.existsSync(currencyDir)) {
       console.log(`Currency directory ${currencyDir} does not exist. Creating it...`);
       fs.mkdirSync(currencyDir, { recursive: true });
@@ -311,7 +311,7 @@ async function createEventCurrenciesTable() {
       database: 'crypto_events'
     });
 
-    // Создаем обновленную таблицу связей событий и валют
+    // Create event_currencies table if it doesn't exist
     await connection.query(`
       CREATE TABLE IF NOT EXISTS event_currencies (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -338,10 +338,10 @@ async function createEventCurrenciesTable() {
 }
 
 /**
- * Рассчитывает daily return для криптовалюты
- * @param {number} close - Цена закрытия
- * @param {number} open - Цена открытия
- * @returns {number} Daily return в процентах
+ * Calculate daily return for a cryptocurrency
+ * @param {number} close - close price
+ * @param {number} open - open price
+ * @returns {number} Daily return in percentage!
  */
 function calculateDailyReturn(close, open) {
   if (!open || open === 0) return 0;
@@ -349,11 +349,10 @@ function calculateDailyReturn(close, open) {
 }
 
 /**
- * Рассчитывает волатильность для криптовалюты
- * @param {number} high - Максимальная цена
- * @param {number} low - Минимальная цена
- * @param {number} open - Цена открытия
- * @returns {number} Волатильность в процентах
+ * Calculate volatility for a cryptocurrency
+ * @param {number} high - Max price
+ * @param {number} low - Min price
+ * @returns {number} Volatility in percentage!
  */
 function calculateVolatility(high, low, open) {
   if (!open || open === 0) return 0;
@@ -372,7 +371,7 @@ async function createEventCurrencyRelationships() {
 
     console.log('Starting to create event-currency relationships...');
 
-    // Получаем все события с необходимыми данными для расчета impact score
+    // Get all events with the necessary data to calculate the impact score
     const [events] = await connection.query(`
       SELECT id, date, country, type_of_event, outcome 
       FROM events 
@@ -382,7 +381,7 @@ async function createEventCurrencyRelationships() {
     
     console.log(`Found ${events.length} events with complete data for impact scoring`);
 
-    // Получаем все данные по криптовалютам
+    // Getting all the data on cryptocurrencies
     const [currencies] = await connection.query(`
       SELECT id, Date, Close, High, Low, Open 
       FROM currencies 
@@ -403,7 +402,7 @@ async function createEventCurrencyRelationships() {
     let relationshipCount = 0;
     let processedEvents = 0;
     
-    // Обрабатываем события батчами для лучшей производительности
+    // Handle events in batches for better performance
     const batchSize = 50;
     
     for (let i = 0; i < events.length; i += batchSize) {
@@ -416,21 +415,21 @@ async function createEventCurrencyRelationships() {
           const eventDate = new Date(event.date);
           const eventDateStr = eventDate.toISOString().split('T')[0];
           
-          // Рассчитываем impact score для события
+          // Calculate the impact score for the event
           const impactScore = calculateEventImpactScore(
             event.country,
             event.type_of_event,
             event.outcome
           );
           
-          // Ищем подходящие записи криптовалют для той же даты
+          // Looking for matching cryptocurrency records for the same date
           const matchingCurrencies = currencies.filter(currency => {
             const currencyDate = new Date(currency.Date);
             const currencyDateStr = currencyDate.toISOString().split('T')[0];
             return eventDateStr === currencyDateStr;
           });
           
-          // Создаем связи для каждой подходящей криптовалюты
+          // Create links for each eligible cryptocurrency
           for (const currency of matchingCurrencies) {
             const dailyReturn = calculateDailyReturn(
               parseFloat(currency.Close),
@@ -471,7 +470,7 @@ async function createEventCurrencyRelationships() {
           
           processedEvents++;
           
-          // Выводим прогресс каждые 25 событий
+          // Display progress every 25 events
           if (processedEvents % 25 === 0) {
             console.log(`Processed ${processedEvents}/${events.length} events, created ${relationshipCount} relationships`);
           }
@@ -489,7 +488,7 @@ async function createEventCurrencyRelationships() {
     console.log(`\nCreated ${relationshipCount} event-currency relationships successfully!`);
     console.log(`Processed ${processedEvents} events total`);
     
-    // Выводим статистику по созданным связям
+    // Display statistics on created links
     if (relationshipCount > 0) {
       const [stats] = await connection.query(`
         SELECT 
@@ -536,7 +535,7 @@ async function analyzeImpactMapping() {
 
     console.log('\n=== IMPACT MAPPING ANALYSIS ===');
     
-    // Анализ покрытия маппинга стран
+    // Analysis of country mapping coverage
     const [countryStats] = await connection.query(`
       SELECT 
         country,
@@ -553,7 +552,7 @@ async function analyzeImpactMapping() {
       console.log(`${stat.country}: ${stat.event_count} events`);
     });
     
-    // Анализ типов событий
+    // Analyzing event types
     const [eventTypeStats] = await connection.query(`
       SELECT 
         type_of_event,
@@ -570,7 +569,7 @@ async function analyzeImpactMapping() {
       console.log(`${stat.type_of_event}: ${stat.event_count} events`);
     });
     
-    // Анализ исходов
+    // Analysis of outcomes
     const [outcomeStats] = await connection.query(`
       SELECT 
         outcome,
@@ -605,7 +604,7 @@ async function main() {
     console.log('4. Demonstrate transaction isolation levels');
     console.log('5. Analyze the imported data\n');
     
-    // Проверяем наличие основного CSV файла
+    // Check if the main CSV file is available
     if (!fs.existsSync('data/World Important Dates.csv')) {
       console.error('Error: data/World Important Dates.csv not found!');
       console.log('Please ensure the CSV file is in the data/ directory');
@@ -627,5 +626,5 @@ async function main() {
   }
 }
 
-// Запускаем основную функцию
+// Start the main function
 main();

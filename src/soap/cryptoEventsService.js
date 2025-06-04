@@ -12,7 +12,7 @@ const cryptoEventsService = {
       GetEventsByCurrencySymbol: async function(args) {
         try {
           const symbol = args.symbol;
-          console.log('🔍 SOAP Request received for symbol:', symbol);
+          console.log('SOAP Request received for symbol:', symbol);
           
           if (!symbol) {
             throw new Error('Symbol parameter is required');
@@ -23,10 +23,10 @@ const cryptoEventsService = {
             where: { Symbol: symbol }
           });
 
-          console.log('💰 Currency records found:', currencies.length);
+          console.log('Currency records found:', currencies.length);
 
           if (!currencies || currencies.length === 0) {
-            console.log('❌ No currency found for symbol:', symbol);
+            console.log('No currency found for symbol:', symbol);
             return {
               eventCurrencies: {
                 eventCurrency: []
@@ -36,7 +36,7 @@ const cryptoEventsService = {
 
           // Get all currency IDs for this symbol
           const currencyIds = currencies.map(c => c.id);
-          console.log('🔢 Currency IDs:', currencyIds.slice(0, 5), '...'); // Show first 5
+          console.log('Currency IDs:', currencyIds.slice(0, 5), '...'); // Show first 5
 
           // Find all event-currency associations for these currencies
           const eventCurrencies = await EventCurrency.findAll({
@@ -58,8 +58,8 @@ const cryptoEventsService = {
             order: [['date', 'DESC']]
           });
 
-          console.log('🔗 Event-Currency associations found:', eventCurrencies.length);
-          console.log('📊 Sample data:', eventCurrencies.length > 0 ? eventCurrencies[0].toJSON() : 'No data');
+          console.log('Event-Currency associations found:', eventCurrencies.length);
+          console.log('Sample data:', eventCurrencies.length > 0 ? eventCurrencies[0].toJSON() : 'No data');
 
           // Transform data for SOAP response
           const responseData = eventCurrencies.map(ec => ({
