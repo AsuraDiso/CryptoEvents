@@ -1,106 +1,63 @@
 const express = require('express');
-
 const datesRouter = require('./routes/events');
 const cryptoRouter = require('./routes/crypto');
-
-const soap = require('soap');
-const fs = require('fs');
-const path = require('path');
-const { helloService } = require('./soap/helloService');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const { createSoapServer } = require('./soap/cryptoEventsService');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text({ type: 'text/xml' }));
+
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  next();
+});
+
+// Базовый маршрут для проверки работы сервера
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Crypto Events API Server',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      soap: {
+        service: '/crypto-events',
+        wsdl: '/crypto-events?wsdl'
+      }
+    }
+  });
+});
 
 app.use('/api/events', datesRouter);
 app.use('/api/crypto', cryptoRouter);
 
 
-// ====================================
-// CONFIG SOAP SERVER
-// ====================================
-// 1. Path to WSDL file
-const wsdlPath = path.join(__dirname, 'soap', 'hello.wsdl');
-console.log('Searching for WSDL file:', wsdlPath);
-
-// 2. Check if WSDL file exists
-if (!fs.existsSync(wsdlPath)) {
-  console.error('WSDL file is not found:', wsdlPath);
-  process.exit(1);
-}
-
-// 3. Read WSDL file
-let wsdlXml;
 try {
-  wsdlXml = fs.readFileSync(wsdlPath, 'utf8');
-  console.log('WSDL read successfully:', wsdlPath);
+  createSoapServer(app);
+  console.log('✅ SOAP server configured successfully');
 } catch (error) {
-  console.error('error while readings WSDL:', error.message);
-  process.exit(1);
+  console.error('❌ Failed to configure SOAP server:', error);
 }
 
-// 4. Soap config
-const soapConfig = {
-  endpoint: '/hello',
-  service: helloService,
-  wsdl: wsdlXml,
-  // Optionf for soap.listen()
-  options: {
-    enableLogging: true,
-
-    // Config XML parser
-    xml2jsOptions: {
-      ignoreAttrs: false,
-      explicitArray: false
-    }
-  }
-};
-
-// 5. Create SOAP server
-let soapServer;
-try {
-  // soap.listen(app, url, service, wsdl, callback, options)
-  soapServer = soap.listen(
-    app,                    // Express app
-    soapConfig.endpoint,    // URL endpoint (/hello)
-    soapConfig.service,     // Object with methods (helloService)
-    soapConfig.wsdl,        // WSDL as string
-    function() {            // Callback for success
-      console.log('SOAP is running!');
-      console.log(`WSDL: http://localhost:5000${soapConfig.endpoint}?wsdl`);
-      console.log(`Endpoint: http://localhost:5000${soapConfig.endpoint}`);
-    }
-    // soapConfig.options   // Extended options (optional)
-  );
+app.use((error, req, res, next) => {
+  console.error('❌ Server Error:', error);
   
-} catch (error) {
-  console.error('Error while creating SOAP server:', error.message);
-  process.exit(1);
-}
-
-// 6. Handling SOAP server events
-if (soapServer) {
-  // Logging SOAP requests
-  soapServer.on('request', function(request, methodName) {
-    console.log(`SOAP request: ${methodName}`);
-    console.log('Headers:', request.headers);
+  res.status(500).json({
+    error: 'Internal Server Error',
+    message: process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong',
+    timestamp: new Date().toISOString()
   });
+});
 
-  // Logging SOAP responses
-  soapServer.on('response', function(response, methodName) {
-    console.log(`SOAP response for: ${methodName}`);
-  });
-
-  // Error handling (logging)
-  soapServer.on('error', function(error) {
-    console.error('SOAP server error:', error.message);
-  });
-}
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log('=================================');
-  console.log(`Server running on ${PORT}`);
-  console.log(`REST API: http://localhost:${PORT}/api/`);
-  console.log(`SOAP WSDL: http://localhost:${PORT}${soapConfig.endpoint}?wsdl`);
-  console.log('=================================');
+const server = app.listen(PORT, () => {
+  console.log('🚀 Server starting...');
+  console.log(`📡 Server running on port ${PORT}`);
+  console.log(`🌐 Base URL: http://localhost:${PORT}`);
+  console.log(`🧼 SOAP Service: http://localhost:${PORT}/crypto-events`);
+  console.log(`📄 WSDL: http://localhost:${PORT}/crypto-events?wsdl`);
+  console.log(`✅ Server ready to accept connections`);
 });

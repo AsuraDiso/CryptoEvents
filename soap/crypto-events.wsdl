@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://localhost:3000/crypto-events"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://localhost:3000/crypto-events"
+             elementFormDefault="qualified">
+
+  <!-- Types definition -->
+  <types>
+    <xsd:schema targetNamespace="http://localhost:3000/crypto-events">
+      
+      <!-- Request type -->
+      <xsd:element name="GetEventsByCurrencySymbolRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="symbol" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <!-- Response type -->
+      <xsd:element name="GetEventsByCurrencySymbolResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="eventCurrencies" type="tns:EventCurrencyArray"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <!-- Event Currency Array -->
+      <xsd:complexType name="EventCurrencyArray">
+        <xsd:sequence>
+          <xsd:element name="eventCurrency" type="tns:EventCurrencyData" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- Event Currency Data -->
+      <xsd:complexType name="EventCurrencyData">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int"/>
+          <xsd:element name="date" type="xsd:dateTime"/>
+          <xsd:element name="eventImpactScore" type="xsd:decimal" minOccurs="0"/>
+          <xsd:element name="dailyReturn" type="xsd:decimal" minOccurs="0"/>
+          <xsd:element name="volatility" type="xsd:decimal" minOccurs="0"/>
+          <xsd:element name="eventName" type="xsd:string"/>
+          <xsd:element name="currencyName" type="xsd:string"/>
+          <xsd:element name="currencySymbol" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+    </xsd:schema>
+  </types>
+
+  <!-- Message definitions -->
+  <message name="GetEventsByCurrencySymbolRequest">
+    <part name="parameters" element="tns:GetEventsByCurrencySymbolRequest"/>
+  </message>
+
+  <message name="GetEventsByCurrencySymbolResponse">
+    <part name="parameters" element="tns:GetEventsByCurrencySymbolResponse"/>
+  </message>
+
+  <!-- Port type -->
+  <portType name="CryptoEventsPortType">
+    <operation name="GetEventsByCurrencySymbol">
+      <input message="tns:GetEventsByCurrencySymbolRequest"/>
+      <output message="tns:GetEventsByCurrencySymbolResponse"/>
+    </operation>
+  </portType>
+
+  <!-- Binding -->
+  <binding name="CryptoEventsBinding" type="tns:CryptoEventsPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetEventsByCurrencySymbol">
+      <soap:operation soapAction="GetEventsByCurrencySymbol"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+  <!-- Service -->
+  <service name="CryptoEventsService">
+    <port name="CryptoEventsPort" binding="tns:CryptoEventsBinding">
+      <soap:address location="http://localhost:3000/crypto-events"/>
+    </port>
+  </service>
+
+</definitions>
