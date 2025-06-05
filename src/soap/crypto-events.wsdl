@@ -10,11 +10,13 @@
   <types>
     <xsd:schema targetNamespace="http://localhost:3000/crypto-events">
       
-      <!-- Existing request/response types -->
+      <!-- Updated GetEventsByCurrencySymbol with date range -->
       <xsd:element name="GetEventsByCurrencySymbolRequest">
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="symbol" type="xsd:string"/>
+            <xsd:element name="startDate" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="endDate" type="xsd:date" minOccurs="0"/>
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -27,7 +29,46 @@
         </xsd:complexType>
       </xsd:element>
 
-      <!-- New correlation request types -->
+      <!-- GetTopImpactEvents -->
+      <xsd:element name="GetTopImpactEventsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="symbol" type="xsd:string"/>
+            <xsd:element name="limit" type="xsd:int" minOccurs="0"/>
+            <xsd:element name="startDate" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="endDate" type="xsd:date" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetTopImpactEventsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="topEvents" type="tns:TopEventArray"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <!-- GetCorrelationSummary -->
+      <xsd:element name="GetCorrelationSummaryRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="symbol" type="xsd:string"/>
+            <xsd:element name="startDate" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="endDate" type="xsd:date" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetCorrelationSummaryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="correlationSummary" type="tns:CorrelationSummaryData"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <!-- Existing correlation request types -->
       <xsd:element name="GetDailyReturnCorrelationRequest">
         <xsd:complexType>
           <xsd:sequence>
@@ -48,7 +89,7 @@
         </xsd:complexType>
       </xsd:element>
 
-      <!-- New correlation response types -->
+      <!-- Existing correlation response types -->
       <xsd:element name="GetDailyReturnCorrelationResponse">
         <xsd:complexType>
           <xsd:sequence>
@@ -65,7 +106,54 @@
         </xsd:complexType>
       </xsd:element>
 
-      <!-- Correlation data type -->
+      <!-- New complex types -->
+      
+      <!-- Top Event Array -->
+      <xsd:complexType name="TopEventArray">
+        <xsd:sequence>
+          <xsd:element name="topEvent" type="tns:TopEventData" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- Top Event Data -->
+      <xsd:complexType name="TopEventData">
+        <xsd:sequence>
+          <xsd:element name="rank" type="xsd:int"/>
+          <xsd:element name="eventName" type="xsd:string"/>
+          <xsd:element name="date" type="xsd:dateTime"/>
+          <xsd:element name="eventImpactScore" type="xsd:decimal"/>
+          <xsd:element name="dailyReturn" type="xsd:decimal" minOccurs="0"/>
+          <xsd:element name="volatility" type="xsd:decimal" minOccurs="0"/>
+          <xsd:element name="eventType" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="country" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="currencySymbol" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- Correlation Summary Data -->
+      <xsd:complexType name="CorrelationSummaryData">
+        <xsd:sequence>
+          <xsd:element name="symbol" type="xsd:string"/>
+          <xsd:element name="dataPoints" type="xsd:int"/>
+          <xsd:element name="startDate" type="xsd:date"/>
+          <xsd:element name="endDate" type="xsd:date"/>
+          <xsd:element name="averageImpactScore" type="xsd:decimal"/>
+          <xsd:element name="dailyReturnCorrelation" type="tns:SimpleCorrelationData"/>
+          <xsd:element name="volatilityCorrelation" type="tns:SimpleCorrelationData"/>
+          <xsd:element name="strongestCorrelation" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- Simple Correlation Data for summary -->
+      <xsd:complexType name="SimpleCorrelationData">
+        <xsd:sequence>
+          <xsd:element name="correlationCoefficient" type="xsd:decimal"/>
+          <xsd:element name="averageMetricValue" type="xsd:decimal"/>
+          <xsd:element name="interpretation" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- Existing correlation data type -->
       <xsd:complexType name="CorrelationData">
         <xsd:sequence>
           <xsd:element name="symbol" type="xsd:string"/>
@@ -112,6 +200,22 @@
     <part name="parameters" element="tns:GetEventsByCurrencySymbolResponse"/>
   </message>
 
+  <message name="GetTopImpactEventsRequest">
+    <part name="parameters" element="tns:GetTopImpactEventsRequest"/>
+  </message>
+
+  <message name="GetTopImpactEventsResponse">
+    <part name="parameters" element="tns:GetTopImpactEventsResponse"/>
+  </message>
+
+  <message name="GetCorrelationSummaryRequest">
+    <part name="parameters" element="tns:GetCorrelationSummaryRequest"/>
+  </message>
+
+  <message name="GetCorrelationSummaryResponse">
+    <part name="parameters" element="tns:GetCorrelationSummaryResponse"/>
+  </message>
+
   <message name="GetDailyReturnCorrelationRequest">
     <part name="parameters" element="tns:GetDailyReturnCorrelationRequest"/>
   </message>
@@ -135,6 +239,16 @@
       <output message="tns:GetEventsByCurrencySymbolResponse"/>
     </operation>
     
+    <operation name="GetTopImpactEvents">
+      <input message="tns:GetTopImpactEventsRequest"/>
+      <output message="tns:GetTopImpactEventsResponse"/>
+    </operation>
+    
+    <operation name="GetCorrelationSummary">
+      <input message="tns:GetCorrelationSummaryRequest"/>
+      <output message="tns:GetCorrelationSummaryResponse"/>
+    </operation>
+    
     <operation name="GetDailyReturnCorrelation">
       <input message="tns:GetDailyReturnCorrelationRequest"/>
       <output message="tns:GetDailyReturnCorrelationResponse"/>
@@ -152,6 +266,26 @@
     
     <operation name="GetEventsByCurrencySymbol">
       <soap:operation soapAction="GetEventsByCurrencySymbol"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    
+    <operation name="GetTopImpactEvents">
+      <soap:operation soapAction="GetTopImpactEvents"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    
+    <operation name="GetCorrelationSummary">
+      <soap:operation soapAction="GetCorrelationSummary"/>
       <input>
         <soap:body use="literal"/>
       </input>
