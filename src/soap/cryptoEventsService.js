@@ -520,11 +520,11 @@ function createSoapServer(app) {
     console.log('SOAP server initialized at /crypto-events');
     console.log('WSDL available at: http://localhost:3000/crypto-events?wsdl');
     console.log('Available methods:');
-    console.log('  - GetEventsByCurrencySymbol (обновлен с поддержкой дат)');
-    console.log('  - GetTopImpactEvents (новый)');
-    console.log('  - GetCorrelationSummary (новый)');
-    console.log('  - GetDailyReturnCorrelation');
-    console.log('  - GetVolatilityCorrelation');
+    console.log('  - GetEventsByCurrencySymbol (Now supports date filtering)');
+    console.log('  - GetTopImpactEvents (new)');
+    console.log('  - GetCorrelationSummary (new)');
+    console.log('  - GetDailyReturnCorrelation (new)');
+    console.log('  - GetVolatilityCorrelation (new)');
   });
 
   return server;
