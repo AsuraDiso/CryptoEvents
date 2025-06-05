@@ -4,11 +4,21 @@ const path = require('path');
 const CryptoCurrency = require('../models/CryptoCurrency');
 const Event = require('../models/Event');
 const EventCurrency = require('../models/EventCurrency');
+const { 
+  calculatePearsonCorrelation, 
+  calculateMean, 
+  filterByDateRange, 
+  prepareCorrelationData, 
+  getDateRange, 
+  formatCorrelationResult 
+} = require('../utils/correlation_utils');
 
 // SOAP service implementation
 const cryptoEventsService = {
   CryptoEventsService: {
     CryptoEventsPort: {
+      
+      // Существующий метод
       GetEventsByCurrencySymbol: async function(args) {
         try {
           const symbol = args.symbol;
@@ -59,7 +69,6 @@ const cryptoEventsService = {
           });
 
           console.log('Event-Currency associations found:', eventCurrencies.length);
-          console.log('Sample data:', eventCurrencies.length > 0 ? eventCurrencies[0].toJSON() : 'No data');
 
           // Transform data for SOAP response
           const responseData = eventCurrencies.map(ec => ({
@@ -83,6 +92,194 @@ const cryptoEventsService = {
           console.error('SOAP Service Error:', error);
           throw new soap.SoapFault('Server Error', error.message);
         }
+      },
+
+      // Новый метод для корреляции daily_return
+      GetDailyReturnCorrelation: async function(args) {
+        try {
+          const { symbol, startDate, endDate } = args;
+          console.log('SOAP Correlation Request for daily_return:', { symbol, startDate, endDate });
+          
+          if (!symbol) {
+            throw new Error('Symbol parameter is required');
+          }
+
+          // Получаем все данные для указанной монеты
+          const currencies = await CryptoCurrency.findAll({
+            where: { Symbol: symbol }
+          });
+
+          if (!currencies || currencies.length === 0) {
+            throw new Error(`No currency found for symbol: ${symbol}`);
+          }
+
+          const currencyIds = currencies.map(c => c.id);
+
+          // Получаем данные event_currencies
+          let eventCurrencies = await EventCurrency.findAll({
+            where: { 
+              currency_id: currencyIds 
+            },
+            include: [
+              {
+                model: Event,
+                foreignKey: 'event_id',
+                required: true
+              },
+              {
+                model: CryptoCurrency,
+                foreignKey: 'currency_id',
+                required: true
+              }
+            ],
+            order: [['date', 'ASC']]
+          });
+
+          // Фильтруем по диапазону дат если указан
+          if (startDate || endDate) {
+            eventCurrencies = filterByDateRange(eventCurrencies, startDate, endDate);
+          }
+
+          if (eventCurrencies.length === 0) {
+            throw new Error('No data found for the specified criteria');
+          }
+
+          // Подготавливаем данные для корреляции
+          const correlationData = prepareCorrelationData(eventCurrencies, 'daily_return');
+          
+          if (correlationData.validDataCount === 0) {
+            throw new Error('No valid data points found for correlation analysis');
+          }
+
+          // Вычисляем корреляцию
+          const correlationCoefficient = calculatePearsonCorrelation(
+            correlationData.impactScores,
+            correlationData.metricValues
+          );
+
+          // Вычисляем дополнительную статистику
+          const averageImpactScore = calculateMean(correlationData.impactScores);
+          const averageMetricValue = calculateMean(correlationData.metricValues);
+          
+          // Получаем диапазон дат из реальных данных
+          const dateRange = getDateRange(correlationData.rawData);
+
+          // Форматируем результат
+          const result = formatCorrelationResult({
+            symbol,
+            correlationCoefficient,
+            dataPoints: correlationData.validDataCount,
+            startDate: dateRange.minDate,
+            endDate: dateRange.maxDate,
+            averageImpactScore,
+            averageMetricValue,
+            metricType: 'daily_return'
+          });
+
+          console.log('Daily Return Correlation calculated:', result);
+
+          return {
+            correlationData: result
+          };
+
+        } catch (error) {
+          console.error('SOAP Daily Return Correlation Error:', error);
+          throw new soap.SoapFault('Server Error', error.message);
+        }
+      },
+
+      // Новый метод для корреляции volatility
+      GetVolatilityCorrelation: async function(args) {
+        try {
+          const { symbol, startDate, endDate } = args;
+          console.log('SOAP Correlation Request for volatility:', { symbol, startDate, endDate });
+          
+          if (!symbol) {
+            throw new Error('Symbol parameter is required');
+          }
+
+          // Получаем все данные для указанной монеты
+          const currencies = await CryptoCurrency.findAll({
+            where: { Symbol: symbol }
+          });
+
+          if (!currencies || currencies.length === 0) {
+            throw new Error(`No currency found for symbol: ${symbol}`);
+          }
+
+          const currencyIds = currencies.map(c => c.id);
+
+          // Получаем данные event_currencies
+          let eventCurrencies = await EventCurrency.findAll({
+            where: { 
+              currency_id: currencyIds 
+            },
+            include: [
+              {
+                model: Event,
+                foreignKey: 'event_id',
+                required: true
+              },
+              {
+                model: CryptoCurrency,
+                foreignKey: 'currency_id',
+                required: true
+              }
+            ],
+            order: [['date', 'ASC']]
+          });
+
+          // Фильтруем по диапазону дат если указан
+          if (startDate || endDate) {
+            eventCurrencies = filterByDateRange(eventCurrencies, startDate, endDate);
+          }
+
+          if (eventCurrencies.length === 0) {
+            throw new Error('No data found for the specified criteria');
+          }
+
+          // Подготавливаем данные для корреляции
+          const correlationData = prepareCorrelationData(eventCurrencies, 'volatility');
+          
+          if (correlationData.validDataCount === 0) {
+            throw new Error('No valid data points found for correlation analysis');
+          }
+
+          // Вычисляем корреляцию
+          const correlationCoefficient = calculatePearsonCorrelation(
+            correlationData.impactScores,
+            correlationData.metricValues
+          );
+
+          // Вычисляем дополнительную статистику
+          const averageImpactScore = calculateMean(correlationData.impactScores);
+          const averageMetricValue = calculateMean(correlationData.metricValues);
+          
+          // Получаем диапазон дат из реальных данных
+          const dateRange = getDateRange(correlationData.rawData);
+
+          // Форматируем результат
+          const result = formatCorrelationResult({
+            symbol,
+            correlationCoefficient,
+            dataPoints: correlationData.validDataCount,
+            startDate: dateRange.minDate,
+            endDate: dateRange.maxDate,
+            averageImpactScore,
+            averageMetricValue,
+            metricType: 'volatility'
+          });
+
+          console.log('Volatility Correlation calculated:', result);
+
+          return {
+            correlationData: result
+          };
+
+        } catch (error) {
+          console.error('SOAP Volatility Correlation Error:', error);
+          throw new soap.SoapFault('Server Error', error.message);
+        }
       }
     }
   }
@@ -104,6 +301,10 @@ function createSoapServer(app) {
   const server = soap.listen(app, '/crypto-events', cryptoEventsService, wsdlXml, function() {
     console.log('SOAP server initialized at /crypto-events');
     console.log('WSDL available at: http://localhost:3000/crypto-events?wsdl');
+    console.log('Available methods:');
+    console.log('  - GetEventsByCurrencySymbol');
+    console.log('  - GetDailyReturnCorrelation');
+    console.log('  - GetVolatilityCorrelation');
   });
 
   return server;
