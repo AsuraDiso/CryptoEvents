@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CryptoData>
+  <Events>
+    <Event>
+      <name_of_incident>FTX Exchange Collapse</name_of_incident>
+      <date>2022-11-11</date>
+      <country>Bahamas</country>
+      <type_of_event>Economic Crisis</type_of_event>
+      <place_name>Nassau</place_name>
+      <impact>Second largest crypto exchange bankruptcy</impact>
+      <affected_population>5 million users</affected_population>
+      <important_person_group>Sam Bankman-Fried</important_person_group>
+      <outcome>Negative</outcome>
+    </Event>
+    <Event>
+      <name_of_incident>Bitcoin Halving 2024</name_of_incident>
+      <date>2024-04-20</date>
+      <country>Global</country>
+      <type_of_event>Technology</type_of_event>
+      <place_name>Bitcoin Network</place_name>
+      <impact>Mining rewards reduced by half</impact>
+      <affected_population>Global</affected_population>
+      <important_person_group>Bitcoin Miners</important_person_group>
+      <outcome>Positive</outcome>
+    </Event>
+  </Events>
+  <Currencies>
+    <Currency>
+      <n>Bitcoin</n>
+      <Symbol>BTC</Symbol>
+      <Date>2022-11-11T00:00:00Z</Date>
+      <Close>16200.50</Close>
+      <High>17500.75</High>
+      <Low>15800.25</Low>
+      <Open>17200.00</Open>
+      <Volume>25847392847.25</Volume>
+      <Marketcap>312847392847392.50</Marketcap>
+    </Currency>
+    <Currency>
+      <n>Ethereum</n>
+      <Symbol>ETH</Symbol>
+      <Date>2022-11-11T00:00:00Z</Date>
+      <Close>1200.75</Close>
+      <High>1350.50</High>
+      <Low>1150.25</Low>
+      <Open>1300.00</Open>
+      <Volume>12847392847.50</Volume>
+      <Marketcap>144847392847392.75</Marketcap>
+    </Currency>
+    <Currency>
+      <n>Bitcoin</n>
+      <Symbol>BTC</Symbol>
+      <Date>2024-04-20T00:00:00Z</Date>
+      <Close>64500.25</Close>
+      <High>66200.00</High>
+      <Low>63100.50</Low>
+      <Open>63800.75</Open>
+      <Volume>18234847392.75</Volume>
+      <Marketcap>1267234847392847.25</Marketcap>
+    </Currency>
+  </Currencies>
+</CryptoData>

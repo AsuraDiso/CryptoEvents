@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Events>
+  <Event>
+    <name_of_incident>Bitcoin First Transaction</name_of_incident>
+    <date>2009-01-12</date>
+    <country>USA</country>
+    <type_of_event>Technology</type_of_event>
+    <place_name>Internet</place_name>
+    <impact>First cryptocurrency transaction in history</impact>
+    <affected_population>Global</affected_population>
+    <important_person_group>Satoshi Nakamoto, Hal Finney</important_person_group>
+    <outcome>Positive</outcome>
+  </Event>
+  <Event>
+    <name_of_incident>Ethereum Launch</name_of_incident>
+    <date>2015-07-30</date>
+    <country>Switzerland</country>
+    <type_of_event>Technology</type_of_event>
+    <place_name>Blockchain Network</place_name>
+    <impact>Introduction of smart contracts to cryptocurrency</impact>
+    <affected_population>Global</affected_population>
+    <important_person_group>Vitalik Buterin</important_person_group>
+    <outcome>Positive</outcome>
+  </Event>
+  <Event>
+    <name_of_incident>Mt. Gox Exchange Collapse</name_of_incident>
+    <date>2014-02-24</date>
+    <country>Japan</country>
+    <type_of_event>Economic Crisis</type_of_event>
+    <place_name>Tokyo</place_name>
+    <impact>Major cryptocurrency exchange bankruptcy</impact>
+    <affected_population>850,000 users</affected_population>
+    <important_person_group>Mark Karpeles</important_person_group>
+    <outcome>Negative</outcome>
+  </Event>
+  <Event>
+    <name_of_incident>China Crypto Ban</name_of_incident>
+    <date>2021-09-24</date>
+    <country>China</country>
+    <type_of_event>Economic Policy</type_of_event>
+    <place_name>Beijing</place_name>
+    <impact>Complete ban on cryptocurrency transactions</impact>
+    <affected_population>1.4 billion people</affected_population>
+    <important_person_group>People's Bank of China</important_person_group>
+    <outcome>Negative</outcome>
+  </Event>
+  <Event>
+    <name_of_incident>Tesla Bitcoin Investment</name_of_incident>
+    <date>2021-02-08</date>
+    <country>USA</country>
+    <type_of_event>Economic Investment</type_of_event>
+    <place_name>California</place_name>
+    <impact>Major corporation adopts Bitcoin as treasury asset</impact>
+    <affected_population>Global</affected_population>
+    <important_person_group>Elon Musk, Tesla Inc</important_person_group>
+    <outcome>Positive</outcome>
+  </Event>
+</Events>
