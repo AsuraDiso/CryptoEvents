@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+// const { cryptoDb } = require('../src/config/database');
 const { cryptoDb } = require('../config/database');
 
 const CryptoCurrency = cryptoDb.define('CryptoCurrency', {
