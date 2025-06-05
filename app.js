@@ -2,6 +2,7 @@ const express = require('express');
 const datesRouter = require('./src/routes/events');
 const cryptoRouter = require('./src/routes/crypto');
 const xmlExportRouter = require('./src/routes/xmlExport');  // New export router for XML exports
+const xmlImportRouter = require('./src/routes/xmlImport');  // New import router for XML files
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { createSoapServer } = require('./src/soap/cryptoEventsService');
@@ -35,7 +36,8 @@ app.get('/', (req, res) => {
       rest: {
         events: '/api/events',
         crypto: '/api/crypto',
-        export: '/api/xmlExport'
+        export: '/api/xmlExport',
+        import: '/api/xmlImport'
       }
     },
     xmlExportAPI: {
@@ -71,6 +73,59 @@ app.get('/', (req, res) => {
         description: 'Clean up old export files'
       }
     },
+    xmlImportAPI: {
+      listFiles: {
+        method: 'GET',
+        url: '/api/xmlImport',
+        description: 'Get list of available XML files for import'
+      },
+      uploadAndImport: {
+        method: 'POST',
+        url: '/api/xmlImport/upload',
+        description: 'Upload and import XML file',
+        contentType: 'multipart/form-data',
+        field: 'xmlFile',
+        body: {
+          importType: 'string (optional) - auto|events|currencies|mixed',
+          deleteAfterImport: 'boolean (optional) - default true'
+        }
+      },
+      importFromFile: {
+        method: 'POST',
+        url: '/api/xmlImport/import',
+        description: 'Import from uploaded XML file',
+        body: {
+          filename: 'string (required) - XML file name',
+          importType: 'string (optional) - auto|events|currencies|mixed',
+          deleteAfterImport: 'boolean (optional) - default false'
+        }
+      },
+      validateFile: {
+        method: 'GET',
+        url: '/api/xmlImport/validate/:filename',
+        description: 'Validate XML file structure'
+      },
+      getStats: {
+        method: 'GET',
+        url: '/api/xmlImport/stats',
+        description: 'Get database and import statistics'
+      },
+      updateRelationships: {
+        method: 'POST',
+        url: '/api/xmlImport/update-relationships',
+        description: 'Force update event-currency relationships'
+      },
+      deleteFile: {
+        method: 'DELETE',
+        url: '/api/xmlImport/:filename',
+        description: 'Delete XML file'
+      },
+      cleanup: {
+        method: 'DELETE',
+        url: '/api/xmlImport/cleanup?days=7',
+        description: 'Clean up old import files'
+      }
+    },
     examples: {
       exportBitcoin: {
         method: 'POST',
@@ -82,6 +137,17 @@ app.get('/', (req, res) => {
           limit: 15
         }
       }
+    },
+    importXMLFile: {  // Добавить этот пример
+      method: 'POST',
+      url: '/api/xmlImport/upload',
+      description: 'Upload and import XML file with events or currencies',
+      contentType: 'multipart/form-data',
+      field: 'xmlFile',
+      body: {
+        importType: 'auto',
+        deleteAfterImport: true
+      }
     }
   });
 });
@@ -91,6 +157,7 @@ app.get('/', (req, res) => {
 app.use('/api/events', datesRouter);
 app.use('/api/crypto', cryptoRouter);
 app.use('/api/xmlExport', xmlExportRouter);  // New export router for XML exports
+app.use('/api/xmlImport', xmlImportRouter);  // New import router for XML files
 
 try {
   createSoapServer(app);
@@ -101,7 +168,7 @@ try {
 
 app.use((error, req, res, next) => {
   console.error('Server Error:', error);
-  
+
   res.status(500).json({
     error: 'Internal Server Error',
     message: process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong',
@@ -112,7 +179,7 @@ app.use((error, req, res, next) => {
 // Graceful shutdown handlers
 const gracefulShutdown = (signal) => {
   console.log(`\n${signal} received, shutting down gracefully...`);
-  
+
   // Disconnect SOAP client
   try {
     soapClientService.disconnect();
@@ -120,7 +187,7 @@ const gracefulShutdown = (signal) => {
   } catch (error) {
     console.error('❌ Error disconnecting SOAP client:', error);
   }
-  
+
   // Close server
   server.close((err) => {
     if (err) {
@@ -142,8 +209,9 @@ const server = app.listen(PORT, async () => {
   console.log(`🧼 SOAP Service: http://localhost:${PORT}/crypto-events`);
   console.log(`📄 WSDL: http://localhost:${PORT}/crypto-events?wsdl`);
   console.log(`📊 XML Export API: http://localhost:${PORT}/api/xmlExport`);
+    console.log(`📥 XML Import API: http://localhost:${PORT}/api/xmlImport`);
   console.log('');
-  
+
   // Itialize SOAP client
   try {
     console.log('🔌 Initializing SOAP client...');
@@ -153,7 +221,7 @@ const server = app.listen(PORT, async () => {
     console.error('❌ Failed to initialize SOAP client:', error);
     console.log('⚠️  SOAP client will be initialized on first request');
   }
-  
+
   console.log('');
   console.log('📋 Available endpoints:');
   console.log('   GET  /                              - API documentation');
@@ -161,6 +229,7 @@ const server = app.listen(PORT, async () => {
   console.log('   POST /api/xmlExport/coin               - Export coin analysis');
   console.log('   GET  /api/xmlExport/download/:filename - Download XML file');
   console.log('   GET  /api/xmlExport/status             - Export system status');
+  console.log('   POST /api/xmlImport/upload             - Upload and import XML');
   console.log('');
   console.log('✨ Server ready to accept connections');
 });
