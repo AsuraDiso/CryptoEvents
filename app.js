@@ -1,6 +1,7 @@
 const express = require('express');
 const datesRouter = require('./src/routes/events');
 const cryptoRouter = require('./src/routes/crypto');
+const soapRouter = require('./src/routes/soapRoutes');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { createSoapServer } = require('./src/soap/cryptoEventsService');
@@ -13,13 +14,11 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text({ type: 'text/xml' }));
 
-// Middleware to log requests
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
   next();
 });
 
-// Base route to check server status
 app.get('/', (req, res) => {
   res.json({
     message: 'Crypto Events API Server',
@@ -28,6 +27,11 @@ app.get('/', (req, res) => {
       soap: {
         service: '/crypto-events',
         wsdl: '/crypto-events?wsdl'
+      },
+      rest: {
+        events: '/api/events',
+        crypto: '/api/crypto',
+        soapBridge: '/api/soap'
       }
     }
   });
@@ -36,6 +40,7 @@ app.get('/', (req, res) => {
 // REST routes
 app.use('/api/events', datesRouter);
 app.use('/api/crypto', cryptoRouter);
+app.use('/api/soap', soapRouter);
 
 // Registration of SOAP service
 try {

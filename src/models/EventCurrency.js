@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize');
-// const { cryptoDb } = require('../src/config/database');
 const { cryptoDb } = require('../config/database');
 
 const EventCurrency = cryptoDb.define('EventCurrency', {
