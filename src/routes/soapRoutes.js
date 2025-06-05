@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const SoapClient = require('../soap/client');
+const { validateDateRange } = require('../utils/analysis_utils');
 
 const WSDL_URL = process.env.SOAP_WSDL_URL || `http://localhost:3000/crypto-events?wsdl`;
 
@@ -30,30 +31,34 @@ async function initializeSoapClient() {
     return initializationPromise;
 }
 
-initializeSoapClient().catch(error => {
-    console.error('Initial SOAP client initialization failed:', error);
-});
-
-const checkSoapClient = async (req, res, next) => {
+async function checkSoapClient(req, res, next) {
     try {
-        if (!soapClient || !soapClient.isInitialized()) {
-            console.log('SOAP client not initialized, attempting to initialize...');
-            await initializeSoapClient();
-        }
+        await initializeSoapClient();
         next();
     } catch (error) {
-        console.error('SOAP client check failed:', error);
         res.status(500).json({
             success: false,
-            error: 'SOAP client is not initialized. Please check the WSDL URL configuration.',
-            details: error.message
+            error: 'SOAP client initialization failed'
         });
     }
-};
+}
+
+function validateAndFormatDates(startDate, endDate) {
+    try {
+        const { validStartDate, validEndDate } = validateDateRange(startDate, endDate);
+        return {
+            startDate: validStartDate ? validStartDate.toISOString().split('T')[0] : null,
+            endDate: validEndDate ? validEndDate.toISOString().split('T')[0] : null
+        };
+    } catch (error) {
+        throw new Error(`Invalid date format: ${error.message}`);
+    }
+}
 
 router.get('/events/:symbol', checkSoapClient, async (req, res) => {
     try {
         const { symbol } = req.params;
+        const { startDate, endDate } = req.query;
         
         if (!symbol) {
             return res.status(400).json({
@@ -62,8 +67,11 @@ router.get('/events/:symbol', checkSoapClient, async (req, res) => {
             });
         }
 
+        const dates = validateAndFormatDates(startDate, endDate);
+
         const soapArgs = {
-            symbol: symbol.toUpperCase()
+            symbol: symbol.toUpperCase(),
+            ...dates
         };
 
         const result = await soapClient.callMethod('GetEventsByCurrencySymbol', soapArgs);
@@ -79,6 +87,145 @@ router.get('/events/:symbol', checkSoapClient, async (req, res) => {
         res.status(500).json({
             success: false,
             error: error.message || 'Failed to get events'
+        });
+    }
+});
+
+router.get('/top-impact/:symbol', checkSoapClient, async (req, res) => {
+    try {
+        const { symbol } = req.params;
+        const { limit, startDate, endDate } = req.query;
+        
+        if (!symbol) {
+            return res.status(400).json({
+                success: false,
+                error: 'Currency symbol is required'
+            });
+        }
+
+        const dates = validateAndFormatDates(startDate, endDate);
+
+        const soapArgs = {
+            symbol: symbol.toUpperCase(),
+            limit: limit ? parseInt(limit) : undefined,
+            ...dates
+        };
+
+        const result = await soapClient.callMethod('GetTopImpactEvents', soapArgs);
+
+        const topEvents = result?.topEvents?.topEvent ?? [];
+
+        res.json({
+            success: true,
+            data: topEvents
+        });
+    } catch (error) {
+        console.error('Error getting top impact events:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Failed to get top impact events'
+        });
+    }
+});
+
+router.get('/correlation-summary/:symbol', checkSoapClient, async (req, res) => {
+    try {
+        const { symbol } = req.params;
+        const { startDate, endDate } = req.query;
+        
+        if (!symbol) {
+            return res.status(400).json({
+                success: false,
+                error: 'Currency symbol is required'
+            });
+        }
+
+        const dates = validateAndFormatDates(startDate, endDate);
+
+        const soapArgs = {
+            symbol: symbol.toUpperCase(),
+            ...dates
+        };
+
+        const result = await soapClient.callMethod('GetCorrelationSummary', soapArgs);
+
+        res.json({
+            success: true,
+            data: result?.correlationSummary
+        });
+    } catch (error) {
+        console.error('Error getting correlation summary:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Failed to get correlation summary'
+        });
+    }
+});
+
+router.get('/daily-return-correlation/:symbol', checkSoapClient, async (req, res) => {
+    try {
+        const { symbol } = req.params;
+        const { startDate, endDate } = req.query;
+        
+        if (!symbol) {
+            return res.status(400).json({
+                success: false,
+                error: 'Currency symbol is required'
+            });
+        }
+
+        const dates = validateAndFormatDates(startDate, endDate);
+
+        const soapArgs = {
+            symbol: symbol.toUpperCase(),
+            ...dates
+        };
+
+        const result = await soapClient.callMethod('GetDailyReturnCorrelation', soapArgs);
+
+        res.json({
+            success: true,
+            data: result?.correlationData
+        });
+    } catch (error) {
+        console.error('Error getting daily return correlation:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Failed to get daily return correlation'
+        });
+    }
+});
+
+router.get('/volatility-correlation/:symbol', checkSoapClient, async (req, res) => {
+    try {
+        const { symbol } = req.params;
+        const { startDate, endDate } = req.query;
+        
+        if (!symbol) {
+            return res.status(400).json({
+                success: false,
+                error: 'Currency symbol is required'
+            });
+        }
+
+        const dates = validateAndFormatDates(startDate, endDate);
+
+        const soapArgs = {
+            symbol: symbol.toUpperCase(),
+            ...dates
+        };
+
+        const result = await soapClient.callMethod('GetVolatilityCorrelation', soapArgs);
+
+        res.json({
+            success: true,
+            data: result?.correlationData
+        });
+    } catch (error) {
+        console.error('Error getting volatility correlation:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message || 'Failed to get volatility correlation'
         });
     }
 });

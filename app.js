@@ -37,12 +37,10 @@ app.get('/', (req, res) => {
   });
 });
 
-// REST routes
 app.use('/api/events', datesRouter);
 app.use('/api/crypto', cryptoRouter);
 app.use('/api/soap', soapRouter);
 
-// Registration of SOAP service
 try {
   createSoapServer(app);
   console.log('✅ SOAP server configured successfully');
@@ -50,7 +48,6 @@ try {
   console.error('❌ Failed to configure SOAP server:', error);
 }
 
-// Error handling middleware
 app.use((error, req, res, next) => {
   console.error('❌ Server Error:', error);
   
