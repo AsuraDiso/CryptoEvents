@@ -1,0 +1,1441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CoinAnalysisReport>
+  <reportInfo>
+    <coinSymbol>BTC</coinSymbol>
+    <generatedAt>2025-06-05T19:39:57.304Z</generatedAt>
+    <reportType>Complete Coin Analysis</reportType>
+    <startDate>2000-01-01</startDate>
+    <endDate>2026-12-31</endDate>
+    <limit>10</limit>
+  </reportInfo>
+  <eventsData>
+    <totalEvents>127</totalEvents>
+    <events>
+      <eventCurrency>
+        <id>1638</id>
+        <date/>
+        <eventImpactScore>2.99</eventImpactScore>
+        <dailyReturn>-0.831649</dailyReturn>
+        <volatility>5.608422</volatility>
+        <eventName>Death of President Idriss Déby</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>992</id>
+        <date/>
+        <eventImpactScore>4.8</eventImpactScore>
+        <dailyReturn>-7.389723</dailyReturn>
+        <volatility>13.554637</volatility>
+        <eventName>First Mars Helicopter Flight</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1260</id>
+        <date/>
+        <eventImpactScore>6.63</eventImpactScore>
+        <dailyReturn>3.964428</dailyReturn>
+        <volatility>4.384417</volatility>
+        <eventName>Prince Philip's Death</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1083</id>
+        <date/>
+        <eventImpactScore>5.2</eventImpactScore>
+        <dailyReturn>-1.562204</dailyReturn>
+        <volatility>4.601481</volatility>
+        <eventName>Paris Agreement Rejoining</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1156</id>
+        <date/>
+        <eventImpactScore>4.4</eventImpactScore>
+        <dailyReturn>-1.562204</dailyReturn>
+        <volatility>4.601481</volatility>
+        <eventName>First Woman Vice President Elected</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1615</id>
+        <date/>
+        <eventImpactScore>3.8</eventImpactScore>
+        <dailyReturn>10.028683</dailyReturn>
+        <volatility>14.787779</volatility>
+        <eventName>2021 General Elections</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1041</id>
+        <date/>
+        <eventImpactScore>7.15</eventImpactScore>
+        <dailyReturn>6.30261</dailyReturn>
+        <volatility>13.185722</volatility>
+        <eventName>Capitol Riot</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1133</id>
+        <date/>
+        <eventImpactScore>9.75</eventImpactScore>
+        <dailyReturn>6.30261</dailyReturn>
+        <volatility>13.185722</volatility>
+        <eventName>January 6 Capitol Attack</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>488</id>
+        <date/>
+        <eventImpactScore>6.4</eventImpactScore>
+        <dailyReturn>1.036219</dailyReturn>
+        <volatility>5.108307</volatility>
+        <eventName>Comprehensive Agreement on Investment with the EU</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>910</id>
+        <date/>
+        <eventImpactScore>2.32</eventImpactScore>
+        <dailyReturn>9.741992</dailyReturn>
+        <volatility>11.126272</volatility>
+        <eventName>Decriminalization of Homosexuality</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1292</id>
+        <date/>
+        <eventImpactScore>4.48</eventImpactScore>
+        <dailyReturn>-4.231343</dailyReturn>
+        <volatility>7.762414</volatility>
+        <eventName>UK Authorizes COVIDUnknown19 Vaccine</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>465</id>
+        <date/>
+        <eventImpactScore>4.8</eventImpactScore>
+        <dailyReturn>7.962852</dailyReturn>
+        <volatility>8.64184</volatility>
+        <eventName>Chang'eUnknown5 Moon Mission Success</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>783</id>
+        <date/>
+        <eventImpactScore>5.4</eventImpactScore>
+        <dailyReturn>4.513818</dailyReturn>
+        <volatility>5.654302</volatility>
+        <eventName>G20 Summit Hosted in Riyadh</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1547</id>
+        <date/>
+        <eventImpactScore>4.94</eventImpactScore>
+        <dailyReturn>2.950824</dailyReturn>
+        <volatility>4.867296</volatility>
+        <eventName>Tigray Conflict Begins</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1570</id>
+        <date/>
+        <eventImpactScore>4.1</eventImpactScore>
+        <dailyReturn>0.618799</dailyReturn>
+        <volatility>1.112865</volatility>
+        <eventName>#EndSARS Protests</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1592</id>
+        <date/>
+        <eventImpactScore>3.44</eventImpactScore>
+        <dailyReturn>-0.412871</dailyReturn>
+        <volatility>2.270742</volatility>
+        <eventName>Juba Peace Agreement</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>2</id>
+        <date/>
+        <eventImpactScore>3.76</eventImpactScore>
+        <dailyReturn>-0.358435</dailyReturn>
+        <volatility>2.58964</volatility>
+        <eventName>Ram Mandir Bhoomi Pujan</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>129</id>
+        <date/>
+        <eventImpactScore>7.41</eventImpactScore>
+        <dailyReturn>10.030911</dailyReturn>
+        <volatility>11.299738</volatility>
+        <eventName>Nationwide Lockdown due to COVIDUnknown19</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>566</id>
+        <date/>
+        <eventImpactScore>5.1</eventImpactScore>
+        <dailyReturn>10.030911</dailyReturn>
+        <volatility>11.299738</volatility>
+        <eventName>2020 Tokyo Olympics Postponement</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>672</id>
+        <date/>
+        <eventImpactScore>4.48</eventImpactScore>
+        <dailyReturn>-1.382422</dailyReturn>
+        <volatility>2.269021</volatility>
+        <eventName>COVIDUnknown19 Pandemic Response</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>110</id>
+        <date/>
+        <eventImpactScore>3.76</eventImpactScore>
+        <dailyReturn>-1.382422</dailyReturn>
+        <volatility>2.269021</volatility>
+        <eventName>India's First Transgender University</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>200</id>
+        <date/>
+        <eventImpactScore>3.36</eventImpactScore>
+        <dailyReturn>-1.382422</dailyReturn>
+        <volatility>2.269021</volatility>
+        <eventName>Asiatic Lion Census Showing Population Increase</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1734</id>
+        <date/>
+        <eventImpactScore>2.24</eventImpactScore>
+        <dailyReturn>-1.382422</dailyReturn>
+        <volatility>2.269021</volatility>
+        <eventName>Legalization of Abortion</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1240</id>
+        <date/>
+        <eventImpactScore>7.28</eventImpactScore>
+        <dailyReturn>-1.382422</dailyReturn>
+        <volatility>2.269021</volatility>
+        <eventName>COVIDUnknown19 Pandemic in the UK</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1063</id>
+        <date/>
+        <eventImpactScore>6.5</eventImpactScore>
+        <dailyReturn>-1.382422</dailyReturn>
+        <volatility>2.269021</volatility>
+        <eventName>George Floyd Protests and Derek Chauvin Trial</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>277</id>
+        <date/>
+        <eventImpactScore>5.7</eventImpactScore>
+        <dailyReturn>-0.821341</dailyReturn>
+        <volatility>1.767562</volatility>
+        <eventName>Citizenship Amendment Act (CAA) Implementation</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>336</id>
+        <date/>
+        <eventImpactScore>2.48</eventImpactScore>
+        <dailyReturn>-4.969987</dailyReturn>
+        <volatility>5.366493</volatility>
+        <eventName>Kartarpur Corridor Opening</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>56</id>
+        <date/>
+        <eventImpactScore>5.2</eventImpactScore>
+        <dailyReturn>-4.969987</dailyReturn>
+        <volatility>5.366493</volatility>
+        <eventName>Supreme Court Verdict on Ayodhya</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1403</id>
+        <date/>
+        <eventImpactScore>3.2</eventImpactScore>
+        <dailyReturn>-6.953202</dailyReturn>
+        <volatility>7.722377</volatility>
+        <eventName>Exhumation of Francisco Franco</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>37</id>
+        <date/>
+        <eventImpactScore>4.7</eventImpactScore>
+        <dailyReturn>1.372725</dailyReturn>
+        <volatility>3.593992</volatility>
+        <eventName>Article 370 Revocation for Jammu &amp; Kashmir</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>181</id>
+        <date/>
+        <eventImpactScore>4.16</eventImpactScore>
+        <dailyReturn>-0.304068</dailyReturn>
+        <volatility>2.185754</volatility>
+        <eventName>Abolition of Instant Triple Talaq</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>91</id>
+        <date/>
+        <eventImpactScore>4.56</eventImpactScore>
+        <dailyReturn>-0.304068</dailyReturn>
+        <volatility>2.185754</volatility>
+        <eventName>Triple Talaq Bill Passed</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>585</id>
+        <date/>
+        <eventImpactScore>4.08</eventImpactScore>
+        <dailyReturn>1.96277</dailyReturn>
+        <volatility>2.650056</volatility>
+        <eventName>Reiwa Era Begins</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>547</id>
+        <date/>
+        <eventImpactScore>3.68</eventImpactScore>
+        <dailyReturn>-0.709688</dailyReturn>
+        <volatility>1.793553</volatility>
+        <eventName>Emperor Akihito's Abdication</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>430</id>
+        <date/>
+        <eventImpactScore>6.24</eventImpactScore>
+        <dailyReturn>0.635833</dailyReturn>
+        <volatility>1.180447</volatility>
+        <eventName>2019 Easter Bombings</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1316</id>
+        <date/>
+        <eventImpactScore>8.71</eventImpactScore>
+        <dailyReturn>1.412228</dailyReturn>
+        <volatility>2.559923</volatility>
+        <eventName>NotreUnknownDame de Paris Fire</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>881</id>
+        <date/>
+        <eventImpactScore>4.2</eventImpactScore>
+        <dailyReturn>0.063001</dailyReturn>
+        <volatility>1.54938</volatility>
+        <eventName>Presidential Transition</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1528</id>
+        <date/>
+        <eventImpactScore>5.59</eventImpactScore>
+        <dailyReturn>-0.161774</dailyReturn>
+        <volatility>0.886612</volatility>
+        <eventName>Cyclone Idai</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1493</id>
+        <date/>
+        <eventImpactScore>2.96</eventImpactScore>
+        <dailyReturn>-1.15339</dailyReturn>
+        <volatility>1.74742</volatility>
+        <eventName>Hirak Protest Movement</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>400</id>
+        <date/>
+        <eventImpactScore>4.03</eventImpactScore>
+        <dailyReturn>-0.589374</dailyReturn>
+        <volatility>1.43694</volatility>
+        <eventName>2019 Pulwama Attack and IndiaUnknownPakistan Standoff</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>240</id>
+        <date/>
+        <eventImpactScore>9.36</eventImpactScore>
+        <dailyReturn>-0.589374</dailyReturn>
+        <volatility>1.43694</volatility>
+        <eventName>Pulwama Terrorist Attack</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1511</id>
+        <date/>
+        <eventImpactScore>6.76</eventImpactScore>
+        <dailyReturn>4.181279</dailyReturn>
+        <volatility>4.934939</volatility>
+        <eventName>Nairobi's DusitD2 Complex Attack</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1696</id>
+        <date/>
+        <eventImpactScore>4.3</eventImpactScore>
+        <dailyReturn>-3.21034</dailyReturn>
+        <volatility>3.694891</volatility>
+        <eventName>Bolsonaro Presidency Begins</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1679</id>
+        <date/>
+        <eventImpactScore>6.89</eventImpactScore>
+        <dailyReturn>-3.21034</dailyReturn>
+        <volatility>3.694891</volatility>
+        <eventName>Amazon Rainforest Wildfires</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>864</id>
+        <date/>
+        <eventImpactScore>6.5</eventImpactScore>
+        <dailyReturn>-3.21034</dailyReturn>
+        <volatility>3.694891</volatility>
+        <eventName>Protests Against Corruption and Unemployment</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1476</id>
+        <date/>
+        <eventImpactScore>4.24</eventImpactScore>
+        <dailyReturn>4.268201</dailyReturn>
+        <volatility>6.042162</volatility>
+        <eventName>Sudanese Revolution</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1335</id>
+        <date/>
+        <eventImpactScore>5.7</eventImpactScore>
+        <dailyReturn>-1.235891</dailyReturn>
+        <volatility>2.800196</volatility>
+        <eventName>Yellow Vest Protests</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>75</id>
+        <date/>
+        <eventImpactScore>4.16</eventImpactScore>
+        <dailyReturn>-0.043711</dailyReturn>
+        <volatility>0.865546</volatility>
+        <eventName>Statue of Unity Unveiled</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1178</id>
+        <date/>
+        <eventImpactScore>4.56</eventImpactScore>
+        <dailyReturn>-0.080286</dailyReturn>
+        <volatility>1.548457</volatility>
+        <eventName>Cannabis Legalization</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>752</id>
+        <date/>
+        <eventImpactScore>7.02</eventImpactScore>
+        <dailyReturn>-0.456657</dailyReturn>
+        <volatility>1.574356</volatility>
+        <eventName>Khashoggi Assassination</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>932</id>
+        <date/>
+        <eventImpactScore>2.32</eventImpactScore>
+        <dailyReturn>-0.194059</dailyReturn>
+        <volatility>2.936281</volatility>
+        <eventName>Presidential Election Victory of Ibrahim Solih</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>219</id>
+        <date/>
+        <eventImpactScore>4.16</eventImpactScore>
+        <dailyReturn>-7.724419</dailyReturn>
+        <volatility>8.090786</volatility>
+        <eventName>Decriminalisation of Section 377</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>370</id>
+        <date/>
+        <eventImpactScore>2.48</eventImpactScore>
+        <dailyReturn>3.78053</dailyReturn>
+        <volatility>4.061404</volatility>
+        <eventName>Imran Khan Elected as Prime Minister</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1351</id>
+        <date/>
+        <eventImpactScore>3.36</eventImpactScore>
+        <dailyReturn>0.458105</dailyReturn>
+        <volatility>1.376066</volatility>
+        <eventName>France Wins the 2018 FIFA World Cup</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>715</id>
+        <date/>
+        <eventImpactScore>3.92</eventImpactScore>
+        <dailyReturn>1.188484</dailyReturn>
+        <volatility>2.512434</volatility>
+        <eventName>Women Allowed to Drive</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>976</id>
+        <date/>
+        <eventImpactScore>2.48</eventImpactScore>
+        <dailyReturn>-9.709136</dailyReturn>
+        <volatility>10.989807</volatility>
+        <eventName>Tham Luang Cave Rescue</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1425</id>
+        <date/>
+        <eventImpactScore>3.5</eventImpactScore>
+        <dailyReturn>1.188472</dailyReturn>
+        <volatility>3.345463</volatility>
+        <eventName>NoUnknownConfidence Vote Against Rajoy</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>385</id>
+        <date/>
+        <eventImpactScore>2.48</eventImpactScore>
+        <dailyReturn>-0.846215</dailyReturn>
+        <volatility>3.48299</volatility>
+        <eventName>Abolition of FATA</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>947</id>
+        <date/>
+        <eventImpactScore>3.68</eventImpactScore>
+        <dailyReturn>-1.55689</dailyReturn>
+        <volatility>3.570889</volatility>
+        <eventName>Pakatan Harapan Electoral Victory</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>849</id>
+        <date/>
+        <eventImpactScore>5.85</eventImpactScore>
+        <dailyReturn>-2.826762</dailyReturn>
+        <volatility>4.502739</volatility>
+        <eventName>US Withdrawal from the JCPOA</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>633</id>
+        <date/>
+        <eventImpactScore>4.56</eventImpactScore>
+        <dailyReturn>4.670965</dailyReturn>
+        <volatility>6.252395</volatility>
+        <eventName>2018 InterUnknownKorean Summit</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1461</id>
+        <date/>
+        <eventImpactScore>1.84</eventImpactScore>
+        <dailyReturn>-2.26801</dailyReturn>
+        <volatility>7.626382</volatility>
+        <eventName>Appointment of Abiy Ahmed</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1388</id>
+        <date/>
+        <eventImpactScore>3.6</eventImpactScore>
+        <dailyReturn>-7.759513</dailyReturn>
+        <volatility>11.453085</volatility>
+        <eventName>Women's Rights March</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>523</id>
+        <date/>
+        <eventImpactScore>7.54</eventImpactScore>
+        <dailyReturn>3.493094</dailyReturn>
+        <volatility>4.736124</volatility>
+        <eventName>Skripal Poisoning Incident</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>355</id>
+        <date/>
+        <eventImpactScore>6.63</eventImpactScore>
+        <dailyReturn>9.759106</dailyReturn>
+        <volatility>12.574341</volatility>
+        <eventName>FATF Grey List</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>22</id>
+        <date/>
+        <eventImpactScore>4.16</eventImpactScore>
+        <dailyReturn>9.759106</dailyReturn>
+        <volatility>12.574341</volatility>
+        <eventName>India's First Hyperloop Project Announcement</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1719</id>
+        <date/>
+        <eventImpactScore>2.99</eventImpactScore>
+        <dailyReturn>9.759106</dailyReturn>
+        <volatility>12.574341</volatility>
+        <eventName>Economic Crisis and IMF Loan</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>828</id>
+        <date/>
+        <eventImpactScore>5.72</eventImpactScore>
+        <dailyReturn>9.759106</dailyReturn>
+        <volatility>12.574341</volatility>
+        <eventName>Political Crisis and State of Emergency</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>604</id>
+        <date/>
+        <eventImpactScore>3.84</eventImpactScore>
+        <dailyReturn>19.860942</dailyReturn>
+        <volatility>20.51176</volatility>
+        <eventName>SameUnknownSex Marriage Legalization</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1117</id>
+        <date/>
+        <eventImpactScore>6.5</eventImpactScore>
+        <dailyReturn>1.976775</dailyReturn>
+        <volatility>3.657465</volatility>
+        <eventName>US Recognition of Jerusalem as Israel's Capital</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1446</id>
+        <date/>
+        <eventImpactScore>5.3</eventImpactScore>
+        <dailyReturn>2.009807</dailyReturn>
+        <volatility>4.820215</volatility>
+        <eventName>Coup d'état Leads to Mugabe's Resignation</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>648</id>
+        <date/>
+        <eventImpactScore>3.68</eventImpactScore>
+        <dailyReturn>0.039032</dailyReturn>
+        <volatility>3.839412</volatility>
+        <eventName>Vietnam Hosts APEC Summit</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>691</id>
+        <date/>
+        <eventImpactScore>6.63</eventImpactScore>
+        <dailyReturn>1.696359</dailyReturn>
+        <volatility>6.466994</volatility>
+        <eventName>Typhoon Damrey Strikes Vietnam</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>767</id>
+        <date/>
+        <eventImpactScore>3.9</eventImpactScore>
+        <dailyReturn>1.696359</dailyReturn>
+        <volatility>6.466994</volatility>
+        <eventName>RitzUnknownCarlton Riyadh Detentions</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>730</id>
+        <date/>
+        <eventImpactScore>3.9</eventImpactScore>
+        <dailyReturn>1.696359</dailyReturn>
+        <volatility>6.466994</volatility>
+        <eventName>AntiUnknownCorruption Campaign</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1374</id>
+        <date/>
+        <eventImpactScore>7.15</eventImpactScore>
+        <dailyReturn>4.142956</dailyReturn>
+        <volatility>4.742321</volatility>
+        <eventName>Catalan Independence Referendum</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1105</id>
+        <date/>
+        <eventImpactScore>9.1</eventImpactScore>
+        <dailyReturn>8.204351</dailyReturn>
+        <volatility>9.117257</volatility>
+        <eventName>Charlottesville Rally and Violence</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>324</id>
+        <date/>
+        <eventImpactScore>4.6</eventImpactScore>
+        <dailyReturn>5.241641</dailyReturn>
+        <volatility>6.459185</volatility>
+        <eventName>Panama Papers Case &amp; Disqualification of PM Nawaz Sharif</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>266</id>
+        <date/>
+        <eventImpactScore>5.76</eventImpactScore>
+        <dailyReturn>-2.299897</dailyReturn>
+        <volatility>3.182845</volatility>
+        <eventName>GST (Goods and Services Tax) Implementation</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1230</id>
+        <date/>
+        <eventImpactScore>9.23</eventImpactScore>
+        <dailyReturn>1.346935</dailyReturn>
+        <volatility>5.17213</volatility>
+        <eventName>Grenfell Tower Fire</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1013</id>
+        <date/>
+        <eventImpactScore>6</eventImpactScore>
+        <dailyReturn>0.324368</dailyReturn>
+        <volatility>1.718352</volatility>
+        <eventName>USUnknownMexico Border Wall Expansion</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>818</id>
+        <date/>
+        <eventImpactScore>3.44</eventImpactScore>
+        <dailyReturn>0.324368</dailyReturn>
+        <volatility>1.718352</volatility>
+        <eventName>Currency Convertibility Introduced</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1030</id>
+        <date/>
+        <eventImpactScore>5.2</eventImpactScore>
+        <dailyReturn>0.324368</dailyReturn>
+        <volatility>1.718352</volatility>
+        <eventName>#MeToo Movement</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>623</id>
+        <date/>
+        <eventImpactScore>6.11</eventImpactScore>
+        <dailyReturn>0.324368</dailyReturn>
+        <volatility>1.718352</volatility>
+        <eventName>THAAD Deployment Controversy</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>153</id>
+        <date/>
+        <eventImpactScore>6.7</eventImpactScore>
+        <dailyReturn>-1.070023</dailyReturn>
+        <volatility>1.524196</volatility>
+        <eventName>India's Demonetisation Campaign</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>295</id>
+        <date/>
+        <eventImpactScore>4.7</eventImpactScore>
+        <dailyReturn>-0.203223</dailyReturn>
+        <volatility>0.439376</volatility>
+        <eventName>2016 Uri Attack and Subsequent Surgical Strikes</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>171</id>
+        <date/>
+        <eventImpactScore>4.56</eventImpactScore>
+        <dailyReturn>1.677934</dailyReturn>
+        <volatility>2.504043</volatility>
+        <eventName>Jio Telecom Launch</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1659</id>
+        <date/>
+        <eventImpactScore>4.3</eventImpactScore>
+        <dailyReturn>0.590297</dailyReturn>
+        <volatility>0.739048</volatility>
+        <eventName>Dilma Rousseff's Impeachment</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1281</id>
+        <date/>
+        <eventImpactScore>5.1</eventImpactScore>
+        <dailyReturn>2.509399</dailyReturn>
+        <volatility>4.39314</volatility>
+        <eventName>Theresa May becomes Prime Minister</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>454</id>
+        <date/>
+        <eventImpactScore>8.45</eventImpactScore>
+        <dailyReturn>-0.127222</dailyReturn>
+        <volatility>2.258968</volatility>
+        <eventName>South China Sea Arbitration Ruling</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1211</id>
+        <date/>
+        <eventImpactScore>5.1</eventImpactScore>
+        <dailyReturn>-10.481661</dailyReturn>
+        <volatility>13.693492</volatility>
+        <eventName>Brexit Referendum</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>662</id>
+        <date/>
+        <eventImpactScore>3.28</eventImpactScore>
+        <dailyReturn>1.115366</dailyReturn>
+        <volatility>1.522404</volatility>
+        <eventName>Historic US Presidential Visit to Vietnam</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1202</id>
+        <date/>
+        <eventImpactScore>8.71</eventImpactScore>
+        <dailyReturn>-1.507106</dailyReturn>
+        <volatility>1.733391</volatility>
+        <eventName>Fort McMurray Wildfire</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>705</id>
+        <date/>
+        <eventImpactScore>4.72</eventImpactScore>
+        <dailyReturn>1.774457</dailyReturn>
+        <volatility>2.489788</volatility>
+        <eventName>Vision 2030 Announced</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>162</id>
+        <date/>
+        <eventImpactScore>6.16</eventImpactScore>
+        <dailyReturn>1.101728</dailyReturn>
+        <volatility>3.331025</volatility>
+        <eventName>Introduction of UPI (Unified Payment Interface)</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>804</id>
+        <date/>
+        <eventImpactScore>3.8</eventImpactScore>
+        <dailyReturn>1.101728</dailyReturn>
+        <volatility>3.331025</volatility>
+        <eventName>Death of Islam Karimov</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>899</id>
+        <date/>
+        <eventImpactScore>2.64</eventImpactScore>
+        <dailyReturn>1.101728</dailyReturn>
+        <volatility>3.331025</volatility>
+        <eventName>Release of Political Prisoners</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>537</id>
+        <date/>
+        <eventImpactScore>6.6</eventImpactScore>
+        <dailyReturn>1.514713</dailyReturn>
+        <volatility>3.631089</volatility>
+        <eventName>JapanUnknownKorea Comfort Women Agreement</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1193</id>
+        <date/>
+        <eventImpactScore>6.27</eventImpactScore>
+        <dailyReturn>1.425212</dailyReturn>
+        <volatility>3.733027</volatility>
+        <eventName>Murdered and Missing Indigenous Women Inquiry</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>257</id>
+        <date/>
+        <eventImpactScore>4.56</eventImpactScore>
+        <dailyReturn>3.866603</dailyReturn>
+        <volatility>4.552248</volatility>
+        <eventName>Historic Solar Alliance Initiative</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>513</id>
+        <date/>
+        <eventImpactScore>4.3</eventImpactScore>
+        <dailyReturn>-0.974416</dailyReturn>
+        <volatility>1.620815</volatility>
+        <eventName>Intervention in the Syrian Civil War</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1022</id>
+        <date/>
+        <eventImpactScore>4.8</eventImpactScore>
+        <dailyReturn>1.012623</dailyReturn>
+        <volatility>1.234371</volatility>
+        <eventName>SameUnknownSex Marriage Legalization</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1365</id>
+        <date/>
+        <eventImpactScore>3.76</eventImpactScore>
+        <dailyReturn>4.631075</dailyReturn>
+        <volatility>6.455676</volatility>
+        <eventName>Expo 2015 in Milan</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>315</id>
+        <date/>
+        <eventImpactScore>3.68</eventImpactScore>
+        <dailyReturn>-0.383068</dailyReturn>
+        <volatility>1.781109</volatility>
+        <eventName>ChinaUnknownPakistan Economic Corridor (CPEC) Agreement</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>744</id>
+        <date/>
+        <eventImpactScore>5.07</eventImpactScore>
+        <dailyReturn>-0.515207</dailyReturn>
+        <volatility>5.121793</volatility>
+        <eventName>Saudi Intervention in Yemen</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>842</id>
+        <date/>
+        <eventImpactScore>5.98</eventImpactScore>
+        <dailyReturn>2.984424</dailyReturn>
+        <volatility>3.210532</volatility>
+        <eventName>1MDB Scandal</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>448</id>
+        <date/>
+        <eventImpactScore>7.5</eventImpactScore>
+        <dailyReturn>2.984424</dailyReturn>
+        <volatility>3.210532</volatility>
+        <eventName>Made in China 2025 Initiative Announced</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1668</id>
+        <date/>
+        <eventImpactScore>6.24</eventImpactScore>
+        <dailyReturn>2.984424</dailyReturn>
+        <volatility>3.210532</volatility>
+        <eventName>Zika Virus Outbreak</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1712</id>
+        <date/>
+        <eventImpactScore>5.1</eventImpactScore>
+        <dailyReturn>2.984424</dailyReturn>
+        <volatility>3.210532</volatility>
+        <eventName>Refugee Crisis</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>965</id>
+        <date/>
+        <eventImpactScore>5.2</eventImpactScore>
+        <dailyReturn>-3.57772</dailyReturn>
+        <volatility>4.97004</volatility>
+        <eventName>AirAsia Flight QZ8501</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>423</id>
+        <date/>
+        <eventImpactScore>3.28</eventImpactScore>
+        <dailyReturn>0.769537</dailyReturn>
+        <volatility>2.01345</volatility>
+        <eventName>National Action Plan Against Terrorism</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>309</id>
+        <date/>
+        <eventImpactScore>7.28</eventImpactScore>
+        <dailyReturn>-1.712197</dailyReturn>
+        <volatility>1.958388</volatility>
+        <eventName>2014 Peshawar School Massacre</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>417</id>
+        <date/>
+        <eventImpactScore>3.68</eventImpactScore>
+        <dailyReturn>-2.673702</dailyReturn>
+        <volatility>5.005871</volatility>
+        <eventName>Malala Yousafzai's Nobel Peace Prize</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1439</id>
+        <date/>
+        <eventImpactScore>3.92</eventImpactScore>
+        <dailyReturn>2.858421</dailyReturn>
+        <volatility>4.718671</volatility>
+        <eventName>Fall of Blaise Compaoré</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>233</id>
+        <date/>
+        <eventImpactScore>3.76</eventImpactScore>
+        <dailyReturn>-0.98393</dailyReturn>
+        <volatility>2.735741</volatility>
+        <eventName>Start of Swachh Bharat Mission</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>147</id>
+        <date/>
+        <eventImpactScore>4.16</eventImpactScore>
+        <dailyReturn>8.380911</dailyReturn>
+        <volatility>11.281004</volatility>
+        <eventName>Indian Mars Orbiter Mission Success</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1224</id>
+        <date/>
+        <eventImpactScore>4.08</eventImpactScore>
+        <dailyReturn>-1.831006</dailyReturn>
+        <volatility>3.381247</volatility>
+        <eventName>Scottish Independence Referendum</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>618</id>
+        <date/>
+        <eventImpactScore>7.54</eventImpactScore>
+        <dailyReturn>-0.838087</dailyReturn>
+        <volatility>1.248683</volatility>
+        <eventName>Repeal of Carbon Tax</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>304</id>
+        <date/>
+        <eventImpactScore>3.68</eventImpactScore>
+        <dailyReturn>-3.89316</dailyReturn>
+        <volatility>8.564192</volatility>
+        <eventName>Operation ZarbUnknowneUnknownAzb</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>813</id>
+        <date/>
+        <eventImpactScore>6.24</eventImpactScore>
+        <dailyReturn>-0.988503</dailyReturn>
+        <volatility>2.030077</volatility>
+        <eventName>ISIS Captures Mosul</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>971</id>
+        <date/>
+        <eventImpactScore>6.11</eventImpactScore>
+        <dailyReturn>12.481759</dailyReturn>
+        <volatility>14.279413</volatility>
+        <eventName>MV Sewol Ferry Sinking</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1220</id>
+        <date/>
+        <eventImpactScore>4.88</eventImpactScore>
+        <dailyReturn>3.88206</dailyReturn>
+        <volatility>11.06356</volatility>
+        <eventName>SameUnknownSex Marriage Legalized</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>509</id>
+        <date/>
+        <eventImpactScore>5.59</eventImpactScore>
+        <dailyReturn>-1.354688</dailyReturn>
+        <volatility>2.508244</volatility>
+        <eventName>Russia's Annexation of Crimea</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>961</id>
+        <date/>
+        <eventImpactScore>4.68</eventImpactScore>
+        <dailyReturn>-5.292706</dailyReturn>
+        <volatility>7.374577</volatility>
+        <eventName>Malaysia Airlines Flight MH370 Disappearance</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1674</id>
+        <date/>
+        <eventImpactScore>5.3</eventImpactScore>
+        <dailyReturn>-0.829913</dailyReturn>
+        <volatility>2.947448</volatility>
+        <eventName>Operation Car Wash (Lava Jato)</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1421</id>
+        <date/>
+        <eventImpactScore>4</eventImpactScore>
+        <dailyReturn>-5.802827</dailyReturn>
+        <volatility>6.474816</volatility>
+        <eventName>Madrid's Bid for 2020 Olympics</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+      <eventCurrency>
+        <id>1313</id>
+        <date/>
+        <eventImpactScore>4.56</eventImpactScore>
+        <dailyReturn>4.0648</dailyReturn>
+        <volatility>7.384319</volatility>
+        <eventName>SameUnknownSex Marriage Legalized</eventName>
+        <currencyName>Bitcoin</currencyName>
+        <currencySymbol>BTC</currencySymbol>
+      </eventCurrency>
+    </events>
+  </eventsData>
+  <topImpactEvents>
+    <count>10</count>
+    <events>
+      <topEvent>
+        <rank>1</rank>
+        <eventName>January 6 Capitol Attack</eventName>
+        <date/>
+        <eventImpactScore>9.75</eventImpactScore>
+        <dailyReturn>6.30261</dailyReturn>
+        <volatility>13.185722</volatility>
+        <eventType>Domestic Terrorism</eventType>
+        <country>USA</country>
+        <currencySymbol>BTC</currencySymbol>
+      </topEvent>
+      <topEvent>
+        <rank>2</rank>
+        <eventName>Pulwama Terrorist Attack</eventName>
+        <date/>
+        <eventImpactScore>9.36</eventImpactScore>
+        <dailyReturn>-0.589374</dailyReturn>
+        <volatility>1.43694</volatility>
+        <eventType>Terrorism</eventType>
+        <country>India</country>
+        <currencySymbol>BTC</currencySymbol>
+      </topEvent>
+      <topEvent>
+        <rank>3</rank>
+        <eventName>Grenfell Tower Fire</eventName>
+        <date/>
+        <eventImpactScore>9.23</eventImpactScore>
+        <dailyReturn>1.346935</dailyReturn>
+        <volatility>5.17213</volatility>
+        <eventType>Disaster</eventType>
+        <country>UK</country>
+        <currencySymbol>BTC</currencySymbol>
+      </topEvent>
+      <topEvent>
+        <rank>4</rank>
+        <eventName>Charlottesville Rally and Violence</eventName>
+        <date/>
+        <eventImpactScore>9.1</eventImpactScore>
+        <dailyReturn>8.204351</dailyReturn>
+        <volatility>9.117257</volatility>
+        <eventType>Social Unrest</eventType>
+        <country>USA</country>
+        <currencySymbol>BTC</currencySymbol>
+      </topEvent>
+      <topEvent>
+        <rank>5</rank>
+        <eventName>Fort McMurray Wildfire</eventName>
+        <date/>
+        <eventImpactScore>8.71</eventImpactScore>
+        <dailyReturn>-1.507106</dailyReturn>
+        <volatility>1.733391</volatility>
+        <eventType>Natural Disaster</eventType>
+        <country>Canada</country>
+        <currencySymbol>BTC</currencySymbol>
+      </topEvent>
+      <topEvent>
+        <rank>6</rank>
+        <eventName>NotreUnknownDame de Paris Fire</eventName>
+        <date/>
+        <eventImpactScore>8.71</eventImpactScore>
+        <dailyReturn>1.412228</dailyReturn>
+        <volatility>2.559923</volatility>
+        <eventType>Disaster</eventType>
+        <country>France</country>
+        <currencySymbol>BTC</currencySymbol>
+      </topEvent>
+      <topEvent>
+        <rank>7</rank>
+        <eventName>South China Sea Arbitration Ruling</eventName>
+        <date/>
+        <eventImpactScore>8.45</eventImpactScore>
+        <dailyReturn>-0.127222</dailyReturn>
+        <volatility>2.258968</volatility>
+        <eventType>International Relations</eventType>
+        <country>China</country>
+        <currencySymbol>BTC</currencySymbol>
+      </topEvent>
+      <topEvent>
+        <rank>8</rank>
+        <eventName>Skripal Poisoning Incident</eventName>
+        <date/>
+        <eventImpactScore>7.54</eventImpactScore>
+        <dailyReturn>3.493094</dailyReturn>
+        <volatility>4.736124</volatility>
+        <eventType>International Incident</eventType>
+        <country>Russia</country>
+        <currencySymbol>BTC</currencySymbol>
+      </topEvent>
+      <topEvent>
+        <rank>9</rank>
+        <eventName>Repeal of Carbon Tax</eventName>
+        <date/>
+        <eventImpactScore>7.54</eventImpactScore>
+        <dailyReturn>-0.838087</dailyReturn>
+        <volatility>1.248683</volatility>
+        <eventType>Environmental/Economic Policy</eventType>
+        <country>Australia</country>
+        <currencySymbol>BTC</currencySymbol>
+      </topEvent>
+      <topEvent>
+        <rank>10</rank>
+        <eventName>Made in China 2025 Initiative Announced</eventName>
+        <date/>
+        <eventImpactScore>7.5</eventImpactScore>
+        <dailyReturn>2.984424</dailyReturn>
+        <volatility>3.210532</volatility>
+        <eventType>Economic Policy</eventType>
+        <country>China</country>
+        <currencySymbol>BTC</currencySymbol>
+      </topEvent>
+    </events>
+  </topImpactEvents>
+  <correlationAnalysis>
+    <summary>
+      <symbol>BTC</symbol>
+      <dataPoints>127</dataPoints>
+      <startDate/>
+      <endDate/>
+      <averageImpactScore>5.0008</averageImpactScore>
+      <dailyReturnCorrelation>
+        <correlationCoefficient>0.15229</correlationCoefficient>
+        <averageMetricValue>0.94773</averageMetricValue>
+        <interpretation>very weak positive correlation (0.152)</interpretation>
+      </dailyReturnCorrelation>
+      <volatilityCorrelation>
+        <correlationCoefficient>-0.030381</correlationCoefficient>
+        <averageMetricValue>4.935048</averageMetricValue>
+        <interpretation>very weak negative correlation (-0.030)</interpretation>
+      </volatilityCorrelation>
+      <strongestCorrelation>Daily Return has a stronger correlation (0.152 vs -0.030)</strongestCorrelation>
+    </summary>
+    <dailyReturnCorrelation>
+      <symbol>BTC</symbol>
+      <correlationCoefficient>0.15229</correlationCoefficient>
+      <dataPoints>127</dataPoints>
+      <startDate/>
+      <endDate/>
+      <averageImpactScore>5.0008</averageImpactScore>
+      <averageMetricValue>0.94773</averageMetricValue>
+      <metricType>daily_return</metricType>
+    </dailyReturnCorrelation>
+    <volatilityCorrelation>
+      <symbol>BTC</symbol>
+      <correlationCoefficient>-0.030381</correlationCoefficient>
+      <dataPoints>127</dataPoints>
+      <startDate/>
+      <endDate/>
+      <averageImpactScore>5.0008</averageImpactScore>
+      <averageMetricValue>4.935048</averageMetricValue>
+      <metricType>volatility</metricType>
+    </volatilityCorrelation>
+  </correlationAnalysis>
+</CoinAnalysisReport>
