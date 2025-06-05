@@ -1,4 +1,3 @@
-// src/services/xmlExportService.js
 const xml2js = require('xml2js');
 const fs = require('fs').promises;
 const path = require('path');
@@ -14,7 +13,7 @@ class XMLExportService {
         this.exportDir = path.join(__dirname, '../../exports/xml_exports');
         this.ensureExportDirectory();
 
-        // Запускаем периодическую очистку старых файлов
+        // Start periodic cleanup of old files
         this.startPeriodicCleanup();
     }
 
@@ -28,21 +27,21 @@ class XMLExportService {
     }
 
     /**
-     * Запуск периодической очистки файлов
+     * Starts periodic file cleanup
      */
     startPeriodicCleanup() {
-        // Очистка каждые 30 минут
+        // Cleaning every 30 minutes
         setInterval(async () => {
             try {
                 console.log('🧹 Running periodic cleanup...');
-                const result = await this.cleanupOldFiles(0.02); // Файлы старше 30 минут (0.02 дня)
+                const result = await this.cleanupOldFiles(0.02);
                 if (result.deleted > 0) {
                     console.log(`🗑️ Periodic cleanup: deleted ${result.deleted} old files`);
                 }
             } catch (error) {
                 console.error('❌ Periodic cleanup error:', error);
             }
-        }, 30 * 60 * 1000); // 30 минут
+        }, 30 * 60 * 1000); // 30 minutes
     }
 
     async exportCoinAnalysis(symbol, completeData, options = {}) {
@@ -141,7 +140,7 @@ class XMLExportService {
         }
     }
 
-    async cleanupOldFiles(daysOld = 0.02) { // По умолчанию 30 минут
+    async cleanupOldFiles(daysOld = 0.02) { // Default to 0.02 days (about 30 minutes)
         try {
             const files = await this.getExportedFiles();
             const cutoffDate = new Date();
@@ -172,6 +171,6 @@ class XMLExportService {
     }
 }
 
-// Создаем singleton экземпляр
+// Create a singleton instance
 const xmlExportService = new XMLExportService();
 module.exports = xmlExportService;

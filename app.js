@@ -21,7 +21,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Главная страница с информацией об API
+// Main page with API documentation
 app.get('/', (req, res) => {
   res.json({
     message: 'Crypto Events API Server with XML Export',
@@ -116,7 +116,7 @@ app.use((error, req, res, next) => {
 const gracefulShutdown = (signal) => {
   console.log(`\n${signal} received, shutting down gracefully...`);
   
-  // Отключаем SOAP клиент
+  // Disconnect SOAP client
   try {
     soapClientService.disconnect();
     console.log('✅ SOAP client disconnected');
@@ -124,7 +124,7 @@ const gracefulShutdown = (signal) => {
     console.error('❌ Error disconnecting SOAP client:', error);
   }
   
-  // Закрываем сервер
+  // Close server
   server.close((err) => {
     if (err) {
       console.error('❌ Error during server shutdown:', err);
@@ -147,7 +147,7 @@ const server = app.listen(PORT, async () => {
   console.log(`📊 XML Export API: http://localhost:${PORT}/api/xmlExport`);
   console.log('');
   
-  // Инициализация SOAP клиента при запуске
+  // Itialize SOAP client
   try {
     console.log('🔌 Initializing SOAP client...');
     await soapClientService.initialize();

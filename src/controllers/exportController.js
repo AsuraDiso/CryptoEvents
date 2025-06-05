@@ -1,10 +1,9 @@
-// src/controllers/exportController.js
 const soapClientService = require('../services/soapClientService');
 const XMLExportService = require('../services/xmlExportService');
 
 class ExportController {
     /**
-     * Получить список всех экспортированных файлов
+     * Get a list of all exported files
      */
     async getExports(req, res) {
         try {
@@ -23,7 +22,7 @@ class ExportController {
     }
 
     /**
-     * Экспорт полной статистики по монете
+     * Export full coin statistics
      */
     async exportCoinAnalysis(req, res) {
         try {
@@ -36,9 +35,9 @@ class ExportController {
                 });
             }
 
-            console.log(`🚀 Starting complete analysis export for ${symbol}...`);
+            console.log(`Starting complete analysis export for ${symbol}...`);
 
-            // Получаем все данные через SOAP клиент
+            // Get all data through SOAP client
             const completeData = await soapClientService.getCompleteAnalysis(
                 symbol,
                 startDate,
@@ -46,14 +45,14 @@ class ExportController {
                 limit
             );
 
-            // Экспортируем в XML
+            // Export to XML
             const exportResult = await XMLExportService.exportCoinAnalysis(
                 symbol,
                 completeData,
                 { startDate, endDate, limit }
             );
 
-            console.log(`✅ Complete analysis exported for ${symbol}: ${exportResult.filename}`);
+            console.log(`Complete analysis exported for ${symbol}: ${exportResult.filename}`);
 
             res.json({
                 success: true,
@@ -71,7 +70,7 @@ class ExportController {
                 }
             });
         } catch (error) {
-            console.error(`❌ Export failed for ${req.body.symbol}:`, error);
+            console.error(`Export failed for ${req.body.symbol}:`, error);
             res.status(500).json({
                 success: false,
                 error: error.message
@@ -80,13 +79,13 @@ class ExportController {
     }
 
     /**
-     * Скачивание XML файла
+     * Download XML file
      */
     async downloadXML(req, res) {
         try {
             const { filename } = req.params;
 
-            // Проверка безопасности
+            // Safety check
             if (!filename || !filename.endsWith('.xml')) {
                 return res.status(400).json({
                     success: false,
@@ -98,7 +97,7 @@ class ExportController {
             const fs = require('fs').promises;
             const filePath = path.join(XMLExportService.exportDir, filename);
 
-            // Проверяем существование файла
+            // Check if the file exists
             try {
                 await fs.access(filePath);
             } catch (error) {
@@ -108,26 +107,25 @@ class ExportController {
                 });
             }
 
-            // Устанавливаем заголовки для скачивания
+            // Set download headers DOES NOT WORK WHITHOUT THEM!!!
             res.setHeader('Content-Type', 'application/xml');
             res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
 
-            // Отправляем файл
-            //   res.sendFile(filePath);
+            // Send file
             res.sendFile(filePath, async (err) => {
                 if (err) {
-                    console.error(`❌ Error sending file ${filename}:`, err);
-                    // Файл не отправился, не удаляем
+                    console.error(`Error sending file ${filename}:`, err);
+                    // The file was not sent, do not delete it
                     return;
                 }
 
                 try {
-                    // Файл успешно отправлен, удаляем его
+                    // The file was successfully sent, delete it
                     await fs.unlink(filePath);
-                    console.log(`🗑️ File automatically deleted after download: ${filename}`);
+                    console.log(`File automatically deleted after download: ${filename}`);
                 } catch (deleteError) {
-                    console.error(`❌ Error deleting file ${filename}:`, deleteError);
-                    // Не критично, файл все равно отправлен
+                    console.error(`Error deleting file ${filename}:`, deleteError);
+                    // Not critical, the file is sent anyway
                 }
             });
 
@@ -141,7 +139,7 @@ class ExportController {
     }
 
     /**
-     * Проверка статуса системы экспорта
+     * Check export system status
      */
     async getStatus(req, res) {
         try {
@@ -157,7 +155,7 @@ class ExportController {
                         totalExports: files.length,
                         isReady: true
                     },
-                    lastExports: files.slice(0, 5) // Последние 5 экспортов
+                    lastExports: files.slice(0, 5) // Last 5 exports
                 }
             });
         } catch (error) {
@@ -169,7 +167,7 @@ class ExportController {
     }
 
     /**
-     * Очистка старых файлов
+     * Clearing out old files
      */
     async cleanup(req, res) {
         try {
