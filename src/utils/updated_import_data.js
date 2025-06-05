@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const csv = require('csv-parser');
 const mysql = require('mysql2/promise');
-const { calculateEventImpactScore } = require('./src/utils/impact_mapper');
+const { calculateEventImpactScore } = require('./impact_mapper');
 
 async function demonstrateIsolationLevels(connection) {
   try {
@@ -225,7 +225,7 @@ async function importCurrencies() {
       )
     `);
 
-    const currencyDir = path.join(__dirname, 'data', 'currency');
+    const currencyDir = path.join(__dirname, '../', '../', 'data', 'currency');
     
     // Check if currency directory exists
     if (!fs.existsSync(currencyDir)) {

@@ -15,7 +15,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text({ type: 'text/xml' }));
 
-// Middleware to log requests
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
   next();
@@ -93,7 +92,6 @@ app.use('/api/events', datesRouter);
 app.use('/api/crypto', cryptoRouter);
 app.use('/api/xmlExport', xmlExportRouter);  // New export router for XML exports
 
-// Registration of SOAP service
 try {
   createSoapServer(app);
   console.log('SOAP server configured successfully');
@@ -101,7 +99,6 @@ try {
   console.error('Failed to configure SOAP server:', error);
 }
 
-// Error handling middleware
 app.use((error, req, res, next) => {
   console.error('Server Error:', error);
   
