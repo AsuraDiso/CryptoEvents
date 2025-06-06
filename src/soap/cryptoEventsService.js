@@ -112,7 +112,7 @@ const cryptoEventsService = {
 
         } catch (error) {
           console.error('SOAP GetEventsByCurrencySymbol Error:', error);
-          throw new soap.SoapFault('Server Error', error.message);
+          throw new Error(error.message);
         }
       },
 
@@ -192,7 +192,7 @@ const cryptoEventsService = {
 
         } catch (error) {
           console.error('SOAP GetTopImpactEvents Error:', error);
-          throw new soap.SoapFault('Server Error', error.message);
+          throw new Error(error.message);
         }
       },
 
@@ -292,7 +292,7 @@ const cryptoEventsService = {
 
         } catch (error) {
           console.error('SOAP GetCorrelationSummary Error:', error);
-          throw new soap.SoapFault('Server Error', error.message);
+          throw new Error(error.message);
         }
       },
 
@@ -394,7 +394,7 @@ const cryptoEventsService = {
 
         } catch (error) {
           console.error('SOAP Daily Return Correlation Error:', error);
-          throw new soap.SoapFault('Server Error', error.message);
+          throw new Error(error.message);
         }
       },
 
@@ -496,7 +496,7 @@ const cryptoEventsService = {
 
         } catch (error) {
           console.error('SOAP Volatility Correlation Error:', error);
-          throw new soap.SoapFault('Server Error', error.message);
+          throw new Error(error.message);
         }
       }
     }

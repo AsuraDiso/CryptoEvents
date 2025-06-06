@@ -3,6 +3,7 @@ const datesRouter = require('./src/routes/events');
 const cryptoRouter = require('./src/routes/crypto');
 const xmlExportRouter = require('./src/routes/xmlExport');  // New export router for XML exports
 const xmlImportRouter = require('./src/routes/xmlImport');  // New import router for XML files
+const soapRoutes = require('./src/routes/soapRoutes');  // New import router for XML files
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { createSoapServer } = require('./src/soap/cryptoEventsService');
@@ -158,6 +159,7 @@ app.use('/api/events', datesRouter);
 app.use('/api/crypto', cryptoRouter);
 app.use('/api/xmlExport', xmlExportRouter);  // New export router for XML exports
 app.use('/api/xmlImport', xmlImportRouter);  // New import router for XML files
+app.use('/api/soap', soapRoutes);  // New import router for XML files
 
 try {
   createSoapServer(app);
