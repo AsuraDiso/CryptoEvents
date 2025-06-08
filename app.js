@@ -8,6 +8,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const { createSoapServer } = require('./src/soap/cryptoEventsService');
 const soapClientService = require('./src/services/soapClientService');
+const { authenticateJWT, requireAdmin } = require('./src/middleware/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -157,9 +158,15 @@ app.get('/', (req, res) => {
 // REST routes
 app.use('/api/events', datesRouter);
 app.use('/api/crypto', cryptoRouter);
-app.use('/api/xmlExport', xmlExportRouter);  // New export router for XML exports
-app.use('/api/xmlImport', xmlImportRouter);  // New import router for XML files
+app.use('/api/xmlExport', authenticateJWT, requireAdmin, xmlExportRouter);
+app.use('/api/xmlImport', authenticateJWT, requireAdmin, xmlImportRouter);
 app.use('/api/soap', soapRoutes);  // New import router for XML files
+
+// function login(req, res) {
+//   const user = { id: 1, username: 'example' }; // Replace with real user lookup
+//   const token = jwt.sign(user, 'your_jwt_secret', { expiresIn: '1h' });
+//   res.json({ token });
+// }
 
 try {
   createSoapServer(app);
