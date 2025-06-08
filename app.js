@@ -4,6 +4,7 @@ const cryptoRouter = require('./src/routes/crypto');
 const xmlExportRouter = require('./src/routes/xmlExport');  // New export router for XML exports
 const xmlImportRouter = require('./src/routes/xmlImport');  // New import router for XML files
 const soapRoutes = require('./src/routes/soapRoutes');  // New import router for XML files
+const authRouter = require('./src/routes/auth');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { createSoapServer } = require('./src/soap/cryptoEventsService');
@@ -156,6 +157,7 @@ app.get('/', (req, res) => {
 
 
 // REST routes
+app.use('/api/auth', authRouter);
 app.use('/api/events', datesRouter);
 app.use('/api/crypto', cryptoRouter);
 app.use('/api/xmlExport', authenticateJWT, requireAdmin, xmlExportRouter);
