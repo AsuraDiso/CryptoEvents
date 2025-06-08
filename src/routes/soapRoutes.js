@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const SoapClient = require('../soap/client');
+const SoapClient = require('../services/soapClientService');
 const { validateDateRange } = require('../utils/analysis_utils');
 
 const WSDL_URL = process.env.SOAP_WSDL_URL || `http://localhost:3000/crypto-events?wsdl`;
