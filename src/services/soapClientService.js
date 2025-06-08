@@ -50,7 +50,6 @@ class SoapClientService {
                 ...(startDate && { startDate }),
                 ...(endDate && { endDate })
             };
-
             console.log('SOAP Request GetEventsByCurrencySymbol:', args);
 
             const [result] = await client.GetEventsByCurrencySymbolAsync(args);
