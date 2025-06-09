@@ -10,15 +10,9 @@ const bodyParser = require('body-parser');
 const { createSoapServer } = require('./src/soap/cryptoEventsService');
 const soapClientService = require('./src/services/soapClientService');
 const { authenticateJWT, requireAdmin } = require('./src/middleware/auth');
-const initDatabase = require('./src/config/initDb');
-const jsonExportRouter = require('./src/routes/jsonExport');
-const jsonImportRouter = require('./src/routes/jsonImport');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
-
-// Initialize database
-initDatabase().catch(console.error);
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -169,8 +163,6 @@ app.use('/api/crypto', cryptoRouter);
 app.use('/api/xmlExport', authenticateJWT, requireAdmin, xmlExportRouter);
 app.use('/api/xmlImport', authenticateJWT, requireAdmin, xmlImportRouter);
 app.use('/api/soap', soapRoutes);  // New import router for XML files
-app.use('/api/jsonExport', authenticateJWT, requireAdmin, jsonExportRouter);
-app.use('/api/jsonImport', authenticateJWT, requireAdmin, jsonImportRouter);
 
 // function login(req, res) {
 //   const user = { id: 1, username: 'example' }; // Replace with real user lookup
@@ -185,45 +177,13 @@ try {
   console.error('Failed to configure SOAP server:', error);
 }
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error('Error:', err);
+app.use((error, req, res, next) => {
+  console.error('Server Error:', error);
 
-  // Handle Sequelize validation errors
-  if (err.name === 'SequelizeValidationError') {
-    return res.status(400).json({
-      error: 'Validation error',
-      details: err.errors.map(e => e.message)
-    });
-  }
-
-  // Handle Sequelize unique constraint errors
-  if (err.name === 'SequelizeUniqueConstraintError') {
-    return res.status(400).json({
-      error: 'Duplicate entry',
-      details: err.errors.map(e => e.message)
-    });
-  }
-
-  // Handle JWT errors
-  if (err.name === 'JsonWebTokenError') {
-    return res.status(401).json({
-      error: 'Invalid token'
-    });
-  }
-
-  // Handle other errors
-  res.status(err.status || 500).json({
-    error: err.message || 'Internal server error',
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
-  });
-});
-
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({
-    error: 'Not found',
-    message: `Cannot ${req.method} ${req.url}`
+  res.status(500).json({
+    error: 'Internal Server Error',
+    message: process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong',
+    timestamp: new Date().toISOString()
   });
 });
 

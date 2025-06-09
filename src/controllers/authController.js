@@ -8,7 +8,7 @@ const authController = {
       res.status(201).json({
         message: 'User created successfully',
         user: {
-          id: user.id,
+          id: user._id,
           username: user.username,
           role: user.role
         }
@@ -35,7 +35,7 @@ const authController = {
       res.status(201).json({
         message: 'Admin user created successfully',
         user: {
-          id: admin.id,
+          id: admin._id,
           username: admin.username,
           role: admin.role
         }
